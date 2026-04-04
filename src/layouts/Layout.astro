@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css'
+import UnderConstructionBanner from "@/components/UnderConstructionBanner.astro";
 ---
 
 <!doctype html>
@@ -12,7 +13,8 @@ import '@/styles/global.css'
 		<meta name="generator" content={Astro.generator} />
 		<title>Vivero Tres Garzas</title>
 	</head>
-	<body>
+	<body class="bg-[#F8F6E1]">
+		<UnderConstructionBanner />
 		<slot />
 	</body>
 </html>

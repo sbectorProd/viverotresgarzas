@@ -1,18 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import About from "@/components/About.astro";
+import Welcome from "@/components/Welcome.astro";
 ---
 
 <Layout>
-	<div
-		class="h-dvh w-full
-		bg-[#F8F6E1]
-		flex flex-col
-		justify-center
-		items-center
-		-z-10
-		"
-	>
-		<img class="w-64" src="/Logo.svg" alt="Logotipo Vivero Tres Garzas" />
-	</div>
-	<p class="bottom-4 fixed inset-0 flex items-end font-bold justify-center">Sitio en construcción</p>
+	<main class="h-screen overflow-y-scroll snap-y snap-mandatory">
+		<Welcome/>
+		<About/>
+	</main>
 </Layout>
