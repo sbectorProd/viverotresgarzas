@@ -1,18 +1,23 @@
-backend:
-  name: git-gateway
-  branch: main
+media:
+  input: public
+  output: /
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+content:
+  - name: about
+    label: About
+    type: file
+    path: src/content/about.md
+    format: yaml-frontmatter
 
-collections:
-  - name: "about"
-    label: "About"
-    files:
-      - file: "src/content/about.md"
-        label: "About Page"
-        name: "about"
-        fields:
-          - { label: "Texto 1", name: "texto1", widget: "string" }
-          - { label: "Texto 2", name: "texto2", widget: "string" }
-          - { label: "Contenido", name: "body", widget: "markdown" }
+    fields:
+      - name: texto1
+        label: Línea 1
+        type: string
+
+      - name: texto2
+        label: Línea 2
+        type: string
+
+      - name: body
+        label: Contenido
+        type: rich-text
