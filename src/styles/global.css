@@ -1,15 +1,18 @@
 @import "tailwindcss";
 @import "@fontsource-variable/cormorant-garamond/wght.css";
 @import "@fontsource-variable/playfair-display/wght.css";
+@import "@fontsource/dm-mono";
 
 html,
 body {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Playfair Display Variable', serif;
+    /* font-family: 'Playfair Display Variable', serif; */
+    font-family: 'DM Mono', monospace;
 }
 
-h2 {
+h2,
+a {
     font-family: 'Cormorant Garamond Variable', serif;
 }
