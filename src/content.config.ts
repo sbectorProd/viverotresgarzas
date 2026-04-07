@@ -2,17 +2,30 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+const inicio = defineCollection({
+  loader: glob({
+    pattern: "inicio.md",
+    base: "./src/content",
+  }),
+  schema: z.object({
+    linea1: z.string(),
+    linea2: z.string(),
+  }),
+});
+
 const about = defineCollection({
   loader: glob({
     pattern: "about.md",
     base: "./src/content",
   }),
   schema: z.object({
-    texto1: z.string(),
-    texto2: z.string(),
+    bullet1: z.string(),
+    bullet2: z.string(),
+    bullet3: z.string(),
+    bullet4: z.string(),
   }),
 });
 
 export const collections = {
-  about,
+  inicio, about,
 };

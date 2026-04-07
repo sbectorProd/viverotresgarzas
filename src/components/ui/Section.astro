@@ -1,0 +1,52 @@
+---
+type Align = "start" | "center" | "end";
+
+interface Props {
+  id?: string;
+  align?: Align;
+  justify?: Align;
+  bg?: string;
+  text?: string;
+  className?: string;
+}
+
+const {
+  id,
+  align = "start",
+  justify = "end",
+  bg = "bg-fondo",
+  text = "text-primario",
+  className = "",
+} = Astro.props as Props;
+
+const alignMap: Record<Align, string> = {
+  start: "items-start",
+  center: "items-center",
+  end: "items-end",
+};
+
+const justifyMap: Record<Align, string> = {
+  start: "justify-start",
+  center: "justify-center",
+  end: "justify-end",
+};
+---
+
+<section
+  id={id}
+  class={`
+    min-h-dvh w-full
+    flex
+    ${alignMap[align]}
+    ${justifyMap[justify]}
+    py-10 md:py-12
+    px-6 md:px-12
+    snap-start
+    ${bg} ${text}
+    ${className}
+  `}
+>
+  <div class="w-full md:max-w-230 flex flex-col gap-5 md:gap-6">
+    <slot />
+  </div>
+</section>

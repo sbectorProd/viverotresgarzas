@@ -1,5 +1,6 @@
 ---
-texto1: Árboles de gran formato
-texto2: para proyectos que necesitan presencia desde el día uno.
+bullet1: Especies adaptadas al clima
+bullet2: Alto estándar de sanidad y estructura
+bullet3: Logística y plantación
+bullet4: Asesoría especializada en cada etapa
 ---
-Cultivamos árboles de alta calidad por mayoreo, listos para integrarse a desarrollos que buscan impacto inmediato y equilibrio ambiental real.

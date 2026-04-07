@@ -1,14 +1,42 @@
 ---
+import Section from "@/components/ui/Section.astro";
+import Button from "@/components/ui/Button.astro";
 
+import { getEntry, render } from "astro:content";
+
+const about = await getEntry("inicio", "inicio");
+
+if (!about) {
+    throw new Error("About content not found");
+}
+
+const { Content } = await render(about);
 ---
 
-<section
-    id="welcome"
-    class="min-h-dvh w-full flex items-center justify-center px-6 md:px-12 snap-start bg-[#F8F6E1] text-[#355C35]"
->
-    <div class="flex flex-col
-		justify-center
-		items-center">
-        <img class="w-64" src="/Logo.svg" alt="Logotipo Vivero Tres Garzas" />
+<Section id="inicio" align="end" justify="start">
+    <div>
+        <h2
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px]/[80px] font-light tracking-tight"
+        >
+            {about.data.linea1}
+        </h2>
+        <h2
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px]/[80px] font-light tracking-tight"
+        >
+            {about.data.linea2}
+        </h2>
     </div>
-</section>
+
+    <!-- CONTENIDO -->
+    <div
+        class="text-base sm:text-lg md:text-xl lg:text-[30px]/[34px] font-extralight leading-relaxed tracking-wider w-full max-w-prose"
+    >
+        <Content />
+    </div>
+
+    <!-- BOTON -->
+    <div class="flex gap-12">
+        <Button href="#"> → Enviar mensaje </Button>
+        <Button href="#contact"> → Solicitar catálogo </Button>
+    </div>
+</Section>

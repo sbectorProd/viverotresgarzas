@@ -3,6 +3,26 @@ media:
   output: /
 
 content:
+  - name: inicio
+    label: Inicio
+    type: file
+    path: src/content/inicio.md
+    format: yaml-frontmatter
+
+    fields:
+      - name: linea1
+        label: Línea 1
+        type: string
+
+      - name: linea2
+        label: Línea 2
+        type: string
+
+      - name: body
+        label: Contenido
+        type: rich-text
+
+content:
   - name: nosotros
     label: Nosotros
     type: file
@@ -10,12 +30,20 @@ content:
     format: yaml-frontmatter
 
     fields:
-      - name: texto1
-        label: Línea 1
+      - name: bullet1
+        label: Bullet 1
         type: string
 
-      - name: texto2
-        label: Línea 2
+      - name: bullet2
+        label: Bullet 2
+        type: string
+
+      - name: bullet3
+        label: Bullet 3
+        type: string
+
+      - name: bullet4
+        label: Bullet 4
         type: string
 
       - name: body

@@ -3,13 +3,20 @@
 @import "@fontsource-variable/playfair-display/wght.css";
 @import "@fontsource/dm-mono";
 
+@theme {
+    --font-sans: "DM Mono", ui-sans-serif, system-ui, sans-serif;
+    /* Colores */
+    --color-fondo: #F8F6E1;
+    --color-primario: #355C35;
+}
+
 html,
 body {
     margin: 0;
     width: 100%;
     height: 100%;
     /* font-family: 'Playfair Display Variable', serif; */
-    font-family: 'DM Mono', monospace;
+    /* font-family: 'DM Mono', monospace; */
 }
 
 h2,
