@@ -10,6 +10,10 @@ content:
     format: yaml-frontmatter
 
     fields:
+      - name: video
+        label: Video
+        type: file
+
       - name: linea1
         label: Línea 1
         type: string
