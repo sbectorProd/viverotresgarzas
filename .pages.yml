@@ -3,8 +3,8 @@ media:
   output: /
 
 content:
-  - name: about
-    label: About
+  - name: nosotros
+    label: Nosotros
     type: file
     path: src/content/about.md
     format: yaml-frontmatter
