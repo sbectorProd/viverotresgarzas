@@ -10,7 +10,7 @@ const inicio = defineCollection({
   schema: z.object({
     linea1: z.string(),
     linea2: z.string(),
-    video: z.string().optional(),
+    fondo: z.string().optional(),
   }),
 });
 

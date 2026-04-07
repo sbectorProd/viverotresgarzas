@@ -1,5 +1,5 @@
 ---
-video: /dronVideo.avif
+fondo: /dronVideo.avif
 linea1: Árboles de gran formato
 linea2: para proyectos que necesitan presencia desde el día uno.
 ---

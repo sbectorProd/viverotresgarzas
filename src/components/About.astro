@@ -13,22 +13,19 @@ if (!about) {
 const { Content } = await render(about);
 ---
 
-<Section id="nosotros" align="end" justify="start">
+<Section id="nosotros" align="center" justify="center">
 	<Container>
 		<div>
-			<h2
-				class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px]/[80px] font-light tracking-tight"
-			>
-				{about.data.bullet1}
-			</h2>
-			<h2
-				class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px]/[80px] font-light tracking-tight"
-			>
-				{about.data.bullet2}
-			</h2>
+			<ul>
+				<li>{about.data.bullet1}</li>
+				<li>{about.data.bullet2}</li>
+				<li>{about.data.bullet3}</li>
+				<li>{about.data.bullet4}</li>
+			</ul>
 		</div>
 
 		<!-- CONTENIDO -->
+
 		<div
 			class="text-base sm:text-lg md:text-xl lg:text-[30px]/[34px] font-extralight leading-relaxed tracking-wide w-full max-w-prose"
 		>

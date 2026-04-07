@@ -21,9 +21,9 @@ const { Content } = await render(about);
     className="relative overflow-hidden"
 >
     {
-        about.data.video && (
+        about.data.fondo && (
             <img
-                src={about.data.video}
+                src={about.data.fondo}
                 class="absolute inset-0 w-full h-full object-cover blur-sm scale-105"
             />
         )
@@ -48,15 +48,14 @@ const { Content } = await render(about);
         </div>
 
         <div
-            class="text-base sm:text-lg md:text-xl lg:text-[30px]/[34px] font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo"
+            class="text-sm sm:text-base md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo"
         >
             <Content />
         </div>
 
-        <div class="flex gap-12">
-            <Button href="#" variant="inverse"> → Enviar mensaje </Button>
-            <Button href="#contact" variant="inverse"
-                >→ Solicitar catálogo</Button
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+            <Button className="w-full sm:w-auto" variant="inverse"> → Enviar mensaje </Button>
+            <Button className="w-full sm:w-auto" variant="inverse">→ Solicitar catálogo</Button
             >
         </div>
     </Container>
