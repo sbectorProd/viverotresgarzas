@@ -10,7 +10,6 @@ const inicio = defineCollection({
   schema: z.object({
     linea1: z.string(),
     linea2: z.string(),
-    body: z.string(),
   }),
 });
 
@@ -24,7 +23,6 @@ const about = defineCollection({
     bullet2: z.string(),
     bullet3: z.string(),
     bullet4: z.string(),
-    body: z.string(),
   }),
 });
 
