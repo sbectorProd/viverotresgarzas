@@ -22,7 +22,6 @@ content:
         label: Contenido
         type: rich-text
 
-content:
   - name: nosotros
     label: Nosotros
     type: file
