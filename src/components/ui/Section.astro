@@ -35,6 +35,7 @@ const justifyMap: Record<Align, string> = {
 <section
   id={id}
   class={`
+    relative
     min-h-dvh w-full
     flex
     ${alignMap[align]}
@@ -46,7 +47,5 @@ const justifyMap: Record<Align, string> = {
     ${className}
   `}
 >
-  <div class="w-full md:max-w-230 flex flex-col gap-5 md:gap-6">
-    <slot />
-  </div>
+  <slot />
 </section>
