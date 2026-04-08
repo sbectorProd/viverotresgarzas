@@ -1,5 +1,5 @@
 ---
-fondo: /dronVideo.avif
+fondo: /3Garzaswelcomeshort.avif
 linea1: Árboles de gran formato
 linea2: para proyectos que necesitan presencia desde el día uno.
 ---
