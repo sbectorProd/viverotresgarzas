@@ -1,0 +1,22 @@
+---
+interface Props {
+  open: boolean;
+}
+
+const { open } = Astro.props as Props;
+---
+
+<div data-mobile-menu
+  class={`fixed top-20 right-6 z-50 transition-all duration-300 ${
+    open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  }`}
+>
+  <div class="bg-primario text-fondo rounded-2xl shadow-xl px-6 py-6 min-w-50">
+    <nav class="flex flex-col gap-4 text-lg">
+      <a href="#inicio" class="hover:opacity-70">Inicio</a>
+      <a href="#nosotros" class="hover:opacity-70">Nosotros</a>
+      <a href="#catalogo" class="hover:opacity-70">Catálogo</a>
+      <a href="#contacto" class="hover:opacity-70">Contacto</a>
+    </nav>
+  </div>
+</div>
