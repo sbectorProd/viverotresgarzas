@@ -24,6 +24,8 @@ const about = defineCollection({
     bullet2: z.string(),
     bullet3: z.string(),
     bullet4: z.string(),
+    texto1: z.string(),
+    texto2: z.string(),
   }),
 });
 

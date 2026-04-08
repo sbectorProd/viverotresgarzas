@@ -11,7 +11,7 @@ content:
 
     fields:
       - name: fondo
-        label: Fondo
+        label: Imagen de inicio
         type: file
 
       - name: linea1
@@ -49,6 +49,10 @@ content:
         label: Bullet 4
         type: string
 
-      - name: body
-        label: Contenido
-        type: rich-text
+      - name: texto1
+        label: Texto 1
+        type: string
+
+      - name: texto2
+        label: Texto 2
+        type: string

@@ -28,3 +28,7 @@ h1,
 h2 {
     font-family: 'Zodiak-Light', serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
