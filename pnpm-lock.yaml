@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/cormorant-garamond':
-        specifier: ^5.2.6
-        version: 5.2.6
-      '@fontsource-variable/playfair-display':
-        specifier: ^5.2.8
-        version: 5.2.8
       '@fontsource/dm-mono':
         specifier: ^5.2.7
         version: 5.2.7
@@ -231,12 +225,6 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
-
-  '@fontsource-variable/cormorant-garamond@5.2.6':
-    resolution: {integrity: sha512-5vHPJWMuTbVoB6OnorCflWJ51NJZ7eQWw58tVFUE/hHphTi/z2vrKESbuMSJ3diOC5KgPm/RLv2ULur+N1NLJQ==}
-
-  '@fontsource-variable/playfair-display@5.2.8':
-    resolution: {integrity: sha512-ZzVIXPOrL85yyOvZYoBzUszIJM+xKkHqni4IYn2CVLaGQQdJR8sBeC8yFNgjxSJ7ludTwta8qpULeOFuk5X75A==}
 
   '@fontsource/dm-mono@5.2.7':
     resolution: {integrity: sha512-Ma1az2atTVgQWuOWwjuxx26p/6A6CU9HBNKq1CFV6YKpKhpswnf9ry9Ql4+T6bTZzkdtSfS6tjJvqZOljVzIFQ==}
@@ -1764,10 +1752,6 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.7':
     optional: true
-
-  '@fontsource-variable/cormorant-garamond@5.2.6': {}
-
-  '@fontsource-variable/playfair-display@5.2.8': {}
 
   '@fontsource/dm-mono@5.2.7': {}
 

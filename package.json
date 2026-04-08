@@ -12,8 +12,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/cormorant-garamond": "^5.2.6",
-    "@fontsource-variable/playfair-display": "^5.2.8",
     "@fontsource/dm-mono": "^5.2.7",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.3",

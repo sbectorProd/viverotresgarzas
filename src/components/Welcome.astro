@@ -24,31 +24,31 @@ const { Content } = await render(about);
         about.data.fondo && (
             <img
                 src={about.data.fondo}
-                class="absolute inset-0 w-full h-full object-cover blur-sm scale-105"
+                class="absolute inset-0 w-full h-full object-cover scale-105"
             />
         )
     }
 
     <!-- overlay para contraste -->
-    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="absolute inset-0 bg-black/40"></div>
 
     <!-- contenido -->
     <Container>
         <div>
             <h2
-                class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px] font-light tracking-tight text-fondo"
+                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-fondo"
             >
                 {about.data.linea1}
             </h2>
             <h2
-                class="text-3xl sm:text-4xl md:text-5xl lg:text-[70px]/[80px] font-light tracking-tight text-fondo"
+                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-fondo"
             >
                 {about.data.linea2}
             </h2>
         </div>
 
         <div
-            class="text-sm sm:text-base md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo"
+            class="text-sm sm:text-sm md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo"
         >
             <Content />
         </div>
