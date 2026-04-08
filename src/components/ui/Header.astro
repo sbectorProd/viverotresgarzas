@@ -11,7 +11,7 @@ import Logo from "@/components/ui/Logo.astro";
     <div
         class="text-current text-lg md:text-xl lg:text-2xl tracking-wide font-medium"
     >
-         <Logo class="w-40 text-current"/>
+        <Logo class="w-40 text-current" />
     </div>
 
     <!-- DESKTOP NAV -->
@@ -38,7 +38,17 @@ import Logo from "@/components/ui/Logo.astro";
 <script>
     const header = document.getElementById("site-header") as HTMLElement;
     const sections = document.querySelectorAll("section");
-    
+    const btn = document.getElementById("menu-btn");
+    const menu = document.querySelector("[data-mobile-menu]");
+
+    let open = false;
+
+    btn?.addEventListener("click", () => {
+        open = !open;
+
+        menu?.classList.toggle("opacity-0");
+        menu?.classList.toggle("pointer-events-none");
+    });
 
     const observer = new IntersectionObserver(
         (entries) => {
