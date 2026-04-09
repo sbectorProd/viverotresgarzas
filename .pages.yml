@@ -25,7 +25,7 @@ content:
       - name: body
         label: Contenido principal
         type: rich-text # [1, 4] Mapea directamente al contenido debajo del frontmatter
-        description: "Texto enriquecido que aparecerá debajo de las líneas principales"
+        description: "Texto que aparecerá debajo de las líneas principales"
 
   - name: nosotros
     label: Nosotros
@@ -36,8 +36,9 @@ content:
       - name: bullets
         label: Puntos clave (Bullets)
         type: string
-        list: true # [5] Permite añadir o quitar puntos dinámicamente sin campos fijos
-        description: "Lista de puntos destacados de la sección"
+        list:
+          max: 4
+        description: "Lista de puntos destacados de la sección (Límite 4 bullets)"
 
       - name: texto1
         label: Primer bloque de texto
