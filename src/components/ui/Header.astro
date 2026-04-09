@@ -1,4 +1,5 @@
 ---
+import { menú } from "@/constants.ts";
 import MobileMenu from "@/components/ui/MobileMenu.astro";
 import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
 ---
@@ -16,10 +17,13 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
     <nav
         class="hidden md:flex gap-8 lg:gap-12 text-sm md:text-base lg:text-2xl text-current tracking-wide"
     >
-        <a href="#inicio">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
-        <!-- <a href="#catalogo">Catálogo</a> -->
-        <a href="#contacto">Contacto</a>
+        {
+            menú.map((item) => (
+                <a href={item.href} class="hover:opacity-70">
+                    {item.name}
+                </a>
+            ))
+        }
     </nav>
 
     <!-- HAMBURGER -->
