@@ -8,6 +8,8 @@ const proyectos = await getEntry("proyectos", "proyectos");
 if (!proyectos) {
 	throw new Error("Proyectos content not found");
 }
+
+const projects = proyectos.data.proyectos_lista ?? [];
 ---
 
 <Section id="proyectos" align="center" justify="center">
@@ -19,25 +21,12 @@ if (!proyectos) {
 		</div>
 
 		<div class="grid w-full gap-6 md:grid-cols-2">
-			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
-				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo1}</p>
-				<p class="text-base leading-7">{proyectos.data.descripcion1}</p>
-			</div>
-
-			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
-				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo2}</p>
-				<p class="text-base leading-7">{proyectos.data.descripcion2}</p>
-			</div>
-
-			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
-				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo3}</p>
-				<p class="text-base leading-7">{proyectos.data.descripcion3}</p>
-			</div>
-
-			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
-				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo4}</p>
-				<p class="text-base leading-7">{proyectos.data.descripcion4}</p>
-			</div>
+			{projects.map((project) => (
+				<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
+					<p class="mb-4 text-xl font-semibold">{project.titulo}</p>
+					<p class="text-base leading-7">{project.descripcion}</p>
+				</div>
+			))}
 		</div>
 	</Container>
 </Section>

@@ -8,11 +8,11 @@ content:
     type: file
     path: src/content/inicio.md
     format: yaml-frontmatter
-
     fields:
       - name: fondo
         label: Imagen de inicio
-        type: file
+        type: image # [1, 2] Mejorado para mostrar previsualización de imagen
+        description: "Sube o selecciona la imagen principal de la cabecera" # [3] Ayuda al editor
 
       - name: linea1
         label: Línea 1
@@ -23,79 +23,52 @@ content:
         type: string
 
       - name: body
-        label: Contenido
-        type: rich-text
+        label: Contenido principal
+        type: rich-text # [1, 4] Mapea directamente al contenido debajo del frontmatter
+        description: "Texto enriquecido que aparecerá debajo de las líneas principales"
 
   - name: nosotros
     label: Nosotros
     type: file
     path: src/content/about.md
     format: yaml-frontmatter
-
     fields:
-      - name: bullet1
-        label: Bullet 1
+      - name: bullets
+        label: Puntos clave (Bullets)
         type: string
-
-      - name: bullet2
-        label: Bullet 2
-        type: string
-
-      - name: bullet3
-        label: Bullet 3
-        type: string
-
-      - name: bullet4
-        label: Bullet 4
-        type: string
+        list: true # [5] Permite añadir o quitar puntos dinámicamente sin campos fijos
+        description: "Lista de puntos destacados de la sección"
 
       - name: texto1
-        label: Texto 1
-        type: string
+        label: Primer bloque de texto
+        type: text # [1] 'text' permite múltiples líneas, ideal para párrafos
 
       - name: texto2
-        label: Texto 2
-        type: string
+        label: Segundo bloque de texto
+        type: text
 
   - name: proyectos
     label: Proyectos
     type: file
     path: src/content/proyectos.md
     format: yaml-frontmatter
-
     fields:
       - name: encabezado
-        label: Encabezado
+        label: Encabezado de la página
         type: string
 
-      - name: titulo1
-        label: Título 1
-        type: string
+      - name: proyectos_lista
+        label: Lista de Proyectos
+        type: object
+        list: # [5, 6] Crea una lista de objetos repetibles y organizados
+          collapsible:
+            summary: "{titulo}" # [6] Muestra el nombre del proyecto en la lista colapsada
+        fields:
+          - name: titulo
+            label: Título del Proyecto
+            type: string
+            required: true # [3] Asegura que el proyecto tenga nombre
 
-      - name: descripcion1
-        label: Descripción 1
-        type: string
-
-      - name: titulo2
-        label: Título 2
-        type: string
-
-      - name: descripcion2
-        label: Descripción 2
-        type: string
-
-      - name: titulo3
-        label: Título 3
-        type: string
-
-      - name: descripcion3
-        label: Descripción 3
-        type: string
-
-      - name: titulo4
-        label: Título 4
-        type: string
-
-      - name: descripcion4
-        label: Descripción 4
-        type: string
+          - name: descripcion
+            label: Descripción del Proyecto
+            type: text
