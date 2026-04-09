@@ -1,7 +1,7 @@
 const menú = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Nosotros', href: '#nosotros' },
-    { name: 'Contacto', href: '#contacto' },
+    { name: 'NOSOTROS', href: '#nosotros' },
+    { name: 'PROYECTOS', href: '#proyectos' },
+    { name: 'CONTACTO', href: '#contacto' },
 ]
 
 export { menú }

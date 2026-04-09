@@ -56,3 +56,46 @@ content:
       - name: texto2
         label: Texto 2
         type: string
+
+  - name: proyectos
+    label: Proyectos
+    type: file
+    path: src/content/proyectos.md
+    format: yaml-frontmatter
+
+    fields:
+      - name: encabezado
+        label: Encabezado
+        type: string
+
+      - name: titulo1
+        label: Título 1
+        type: string
+
+      - name: descripcion1
+        label: Descripción 1
+        type: string
+
+      - name: titulo2
+        label: Título 2
+        type: string
+
+      - name: descripcion2
+        label: Descripción 2
+        type: string
+
+      - name: titulo3
+        label: Título 3
+        type: string
+
+      - name: descripcion3
+        label: Descripción 3
+        type: string
+
+      - name: titulo4
+        label: Título 4
+        type: string
+
+      - name: descripcion4
+        label: Descripción 4
+        type: string

@@ -8,7 +8,7 @@ const inicio = defineCollection({
     base: "./src/content",
   }),
   schema: z.object({
-    linea1: z.string(),
+    linea1: z.string().optional(),
     linea2: z.string().optional(),
     fondo: z.string().optional(),
   }),
@@ -20,15 +20,35 @@ const about = defineCollection({
     base: "./src/content",
   }),
   schema: z.object({
-    bullet1: z.string(),
-    bullet2: z.string(),
-    bullet3: z.string(),
-    bullet4: z.string(),
-    texto1: z.string(),
-    texto2: z.string(),
+    bullet1: z.string().optional(),
+    bullet2: z.string().optional(),
+    bullet3: z.string().optional(),
+    bullet4: z.string().optional(),
+    texto1: z.string().optional(),
+    texto2: z.string().optional(),
+  }),
+});
+
+const proyectos = defineCollection({
+  loader: glob({
+    pattern: "proyectos.md",
+    base: "./src/content",
+  }),
+  schema: z.object({
+    encabezado: z.string().optional(),
+    titulo1: z.string().optional(),
+    descripcion1: z.string().optional(),
+    titulo2: z.string().optional(),
+    descripcion2: z.string().optional(),
+    titulo3: z.string().optional(),
+    descripcion3: z.string().optional(),
+    titulo4: z.string().optional(),
+    descripcion4: z.string().optional(),
   }),
 });
 
 export const collections = {
-  inicio, about,
+  inicio,
+  about,
+  proyectos,
 };

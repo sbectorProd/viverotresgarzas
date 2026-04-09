@@ -6,12 +6,12 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
 
 <header
     id="site-header"
-    class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-5 md:py-8 flex justify-between items-center transition-all duration-300"
+    class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-5 md:py-8 flex justify-between items-center transition-all duration-300 bg-transparent"
 >
     <!-- LOGO -->
-    <div>
+    <a href="#inicio">
         <LogoHeader class="w-40 lg:w-80 text-current" />
-    </div>
+    </a>
 
     <!-- DESKTOP NAV -->
     <nav
@@ -61,9 +61,13 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
                     if (id === "inicio") {
                         header.classList.add("text-fondo");
                         header.classList.remove("text-primario");
+                        header.classList.add("bg-transparent");
+                        header.classList.remove("bg-fondo");
                     } else {
                         header.classList.add("text-primario");
                         header.classList.remove("text-fondo");
+                        header.classList.add("bg-fondo");
+                        header.classList.remove("bg-transparent");
                     }
                 }
             });

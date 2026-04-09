@@ -1,0 +1,43 @@
+---
+import Section from "@/components/ui/Section.astro";
+import Container from "@/components/ui/Container.astro";
+import { getEntry } from "astro:content";
+
+const proyectos = await getEntry("proyectos", "proyectos");
+
+if (!proyectos) {
+	throw new Error("Proyectos content not found");
+}
+---
+
+<Section id="proyectos" align="center" justify="center">
+	<Container className="flex flex-col items-center gap-10 text-center max-w-6xl">
+		<div class="space-y-4">
+			<p class="text-base lg:text-xl tracking-wide text-primario">
+				{proyectos.data.encabezado}
+			</p>
+		</div>
+
+		<div class="grid w-full gap-6 md:grid-cols-2">
+			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
+				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo1}</p>
+				<p class="text-base leading-7">{proyectos.data.descripcion1}</p>
+			</div>
+
+			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
+				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo2}</p>
+				<p class="text-base leading-7">{proyectos.data.descripcion2}</p>
+			</div>
+
+			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
+				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo3}</p>
+				<p class="text-base leading-7">{proyectos.data.descripcion3}</p>
+			</div>
+
+			<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
+				<p class="mb-4 text-xl font-semibold">{proyectos.data.titulo4}</p>
+				<p class="text-base leading-7">{proyectos.data.descripcion4}</p>
+			</div>
+		</div>
+	</Container>
+</Section>
