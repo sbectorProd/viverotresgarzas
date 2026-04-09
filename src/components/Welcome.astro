@@ -24,13 +24,13 @@ const { Content } = await render(about);
         about.data.fondo && (
             <img
                 src={about.data.fondo}
-                class="absolute inset-0 w-full h-full object-cover scale-105 blur-sm"
+                class="absolute inset-0 w-full h-full object-cover"
             />
         )
     }
 
     <!-- overlay para contraste -->
-    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-neutral-900/50"></div>
 
     <!-- contenido -->
     <Container>
