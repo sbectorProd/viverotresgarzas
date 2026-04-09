@@ -6,11 +6,11 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
 
 <header
     id="site-header"
-    class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-5 md:py-8 flex justify-between items-center transition-all duration-300 bg-transparent"
+    class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-5 md:pt-6 md:pb-1 flex justify-between items-center transition-all duration-300 bg-transparent"
 >
     <!-- LOGO -->
     <a href="#inicio">
-        <LogoHeader class="w-40 lg:w-80 text-current" />
+        <LogoHeader class="pt-1 w-40 md:w-80 text-current" />
     </a>
 
     <!-- DESKTOP NAV -->
@@ -41,15 +41,35 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
     const header = document.getElementById("site-header") as HTMLElement;
     const sections = document.querySelectorAll("section");
     const btn = document.getElementById("menu-btn");
+    const closeBtn = document.getElementById("close-menu-btn");
     const menu = document.querySelector("[data-mobile-menu]");
 
     let open = false;
 
-    btn?.addEventListener("click", () => {
-        open = !open;
+    const setMenuOpen = (value: boolean) => {
+        open = value;
 
-        menu?.classList.toggle("opacity-0");
-        menu?.classList.toggle("pointer-events-none");
+        if (menu) {
+            menu.classList.toggle("opacity-0", !open);
+            menu.classList.toggle("pointer-events-none", !open);
+        }
+    };
+
+    btn?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setMenuOpen(!open);
+    });
+
+    closeBtn?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setMenuOpen(false);
+    });
+
+    document.addEventListener("click", (event) => {
+        if (!open || !menu) return;
+        if (event.target instanceof Node && !menu.contains(event.target) && !btn?.contains(event.target)) {
+            setMenuOpen(false);
+        }
     });
 
     const observer = new IntersectionObserver(

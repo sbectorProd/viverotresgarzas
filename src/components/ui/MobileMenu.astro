@@ -9,12 +9,23 @@ const { open } = Astro.props as Props;
 ---
 
 <div data-mobile-menu
-  class={`fixed top-20 right-6 z-50 transition-all duration-300 ${
+  class={`fixed top-16 right-6 z-50 transition-all duration-300 ${
     open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
   }`}
 >
-  <div class="bg-primario text-fondo rounded-2xl shadow-xl px-6 py-6 min-w-50">
-    <nav class="flex flex-col gap-4 text-lg">
+  <div class="bg-primario text-fondo shadow-xl px-6 py-6 min-w-[18rem] rounded-3xl">
+    <div class="flex justify-end">
+      <button
+        id="close-menu-btn"
+        class="text-fondo/80 hover:text-fondo rounded-full border border-fondo/30 px-3 py-1 text-lg"
+        aria-label="Cerrar menú"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-4 text-lg mt-4">
       {menú.map(item => (
         <a href={item.href} class="hover:opacity-70">{item.name}</a>
       ))}

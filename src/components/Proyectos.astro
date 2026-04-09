@@ -12,19 +12,23 @@ if (!proyectos) {
 const projects = proyectos.data.proyectos_lista ?? [];
 ---
 
-<Section id="proyectos" align="center" justify="center">
-	<Container className="flex flex-col items-center gap-10 text-center max-w-6xl">
-		<div class="space-y-4">
-			<p class="text-base lg:text-xl tracking-wide text-primario">
+<Section id="proyectos" align="end" justify="start">
+	<Container className="lg:max-w-400">
+		<div class="mb-10 max-w-170">
+			<p class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif">
 				{proyectos.data.encabezado}
 			</p>
 		</div>
 
-		<div class="grid w-full gap-6 md:grid-cols-2">
+		<div class="grid gap-y-12 md:grid-cols-2 md:gap-x-60">
 			{projects.map((project) => (
-				<div class="rounded-4xl border border-current/10 bg-white/10 p-6 text-left">
-					<p class="mb-4 text-xl font-semibold">{project.titulo}</p>
-					<p class="text-base leading-7">{project.descripcion}</p>
+				<div class="max-w-xl text-left">
+					<p class="mb-6 text-xl md:text-4xl font-serif font-medium tracking-tight text-primario">
+						{project.titulo}
+					</p>
+					<p class="text-base md:text-2xl leading-8 text-primario/80 tracking-wide">
+						{project.descripcion}
+					</p>
 				</div>
 			))}
 		</div>

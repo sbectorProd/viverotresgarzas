@@ -25,11 +25,11 @@ const variants = {
 ---
 
 {href ? (
-  <a href={href} class={`${base} ${variants[variant]} ${className} font-brand`}>
+  <a href={href} class={`${base} ${variants[variant]} ${className} font-serif`}>
     <slot />
   </a>
 ) : (
-  <button class={`${base} ${variants[variant]} ${className} font-brand`}>
+  <button class={`${base} ${variants[variant]} ${className} font-serif`}>
     <slot />
   </button>
 )}

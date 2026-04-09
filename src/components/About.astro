@@ -33,37 +33,42 @@ const { Content } = await render(about);
 		</div>
 
 		<!-- 🟢 DESKTOP (diagrama) -->
-		<div class="hidden md:block w-full h-full">
-			<!-- IZQUIERDA -->
+		<div class="hidden md:block w-full h-full relative">
+			<div class="absolute inset-0 pointer-events-none">
+				<svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+					<g stroke="#355C35" stroke-width="2" stroke-linecap="round" fill="none">
+						<line x1="24" y1="20" x2="50" y2="50" />
+						<line x1="24" y1="80" x2="50" y2="50" />
+						<line x1="76" y1="20" x2="50" y2="50" />
+						<line x1="76" y1="80" x2="50" y2="50" />
+						<circle cx="24" cy="20" r="2.5" fill="#355C35" />
+						<circle cx="24" cy="80" r="2.5" fill="#355C35" />
+						<circle cx="76" cy="20" r="2.5" fill="#355C35" />
+						<circle cx="76" cy="80" r="2.5" fill="#355C35" />
+					</g>
+				</svg>
+			</div>
+
 			{bullet1 && (
-				<div
-					class="max-w-xs absolute left-0 top-1/4 -translate-y-1/2 text-base lg:text-2xl"
-				>
+				<div class="absolute left-8 top-16 w-60 text-base lg:text-2xl">
 					{bullet1}
 				</div>
 			)}
 
 			{bullet3 && (
-				<div
-					class="max-w-xs absolute left-0 bottom-1/4 translate-y-1/2 text-base lg:text-2xl"
-				>
+				<div class="absolute left-8 bottom-16 w-60 text-base lg:text-2xl">
 					{bullet3}
 				</div>
 			)}
 
-			<!-- DERECHA -->
 			{bullet2 && (
-				<div
-					class="max-w-xs absolute right-0 top-1/4 -translate-y-1/2 text-base lg:text-2xl"
-				>
+				<div class="absolute right-8 top-16 w-60 text-base lg:text-2xl text-right">
 					{bullet2}
 				</div>
 			)}
 
 			{bullet4 && (
-				<div
-					class="max-w-xs absolute right-0 bottom-1/4 translate-y-1/2 text-base lg:text-2xl"
-				>
+				<div class="absolute right-8 bottom-16 w-60 text-base lg:text-2xl text-right">
 					{bullet4}
 				</div>
 			)}

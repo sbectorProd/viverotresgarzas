@@ -13,7 +13,7 @@
     /* Colores */
     --color-fondo: #F8F6E1;
     --color-primario: #355C35;
-    --font-brand: "Zodiak-Light", serif;
+    --font-serif: "Zodiak-Light", serif;
 }
 
 
@@ -22,13 +22,5 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
-}
-
-h1,
-h2 {
-    font-family: 'Zodiak-Light', serif;
-}
-
-html {
-  scroll-behavior: smooth;
+     scroll-behavior: smooth;
 }
