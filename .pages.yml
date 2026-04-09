@@ -61,15 +61,16 @@ content:
       - name: proyectos_lista
         label: Lista de Proyectos
         type: object
-        list: # [5, 6] Crea una lista de objetos repetibles y organizados
+        list:
+          max: 4
           collapsible:
             summary: "{titulo}" # [6] Muestra el nombre del proyecto en la lista colapsada
         fields:
           - name: titulo
-            label: Título del Proyecto
+            label: Título
             type: string
             required: true # [3] Asegura que el proyecto tenga nombre
 
           - name: descripcion
-            label: Descripción del Proyecto
+            label: Descripción
             type: text
