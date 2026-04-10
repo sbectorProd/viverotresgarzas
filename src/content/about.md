@@ -3,7 +3,8 @@ bullets:
   - "Especies adaptadas al clima: Grevilleas, Sicomoros, Majahuas, Tabachines,
     Jacarandas, Guamuchiles, Mezquites, Encino Belutina, Olivo negro y Pino
     michoacano"
-  - Alto estándar de sanidad y estructura
+  - "Alto estándar de sanidad y estructura: Irrigación periódica y controlada,
+    Bolsas geotextiles, sustrato especializado y revisión diaria de cada árbol."
   - "Logística y plantación: Transporte/flete, Tierra orgánica, Tierra mejorada
     y Tierra agrícola; servicio de plantado con los mejores estándares."
   - "Asesoría especializada en cada etapa: Plantación, Servicio completo de
