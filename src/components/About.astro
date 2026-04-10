@@ -23,10 +23,10 @@ const { Content } = await render(about);
 	>
 		<!-- 🟢 MOBILE (stack) -->
 		<div
-			class="flex flex-col items-center text-center gap-6 md:hidden text-base"
+			class="flex flex-col items-center text-center gap-6 md:hidden text-base max-w-xl mx-auto"
 		>
 			{bullets.map((item) => (
-				<p>{item}</p>
+				<p> → {item}</p>
 			))}
 
 			<Logo class="w-20 text-current" />
@@ -70,7 +70,7 @@ const { Content } = await render(about);
 
 			<!-- CENTRO -->
 			<div class="absolute inset-0 flex items-center justify-center">
-				<Logo class="w-28 lg:w-40 text-current" />
+				<Logo class="w-20 lg:w-30 text-current" />
 			</div>
 		</div>
 	</Container>

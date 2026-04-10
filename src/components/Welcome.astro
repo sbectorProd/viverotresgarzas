@@ -34,7 +34,7 @@ const { Content } = await render(about);
 
     <!-- contenido -->
     <Container>
-        <div>
+        <div class="max-w-3xl mx-auto md:mx-0 text-center md:text-left">
             <h2
                 class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-fondo font-serif"
             >
@@ -48,12 +48,12 @@ const { Content } = await render(about);
         </div>
 
         <div
-            class="text-sm sm:text-sm md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo"
+            class="text-sm sm:text-sm md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo mx-auto md:mx-0 text-center md:text-left"
         >
             <Content />
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2 justify-center sm:justify-start">
             <Button className="w-full sm:w-auto" variant="inverse"> → Enviar mensaje </Button>
             <Button className="w-full sm:w-auto" variant="inverse"> → Solicitar catálogo</Button
             >
