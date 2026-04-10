@@ -9,19 +9,19 @@ const { open } = Astro.props as Props;
 ---
 
 <div data-mobile-menu
-  class={`fixed top-16 right-6 z-50 transition-all duration-300 ${
+  class={`fixed top-0 right-0 z-50 transition-all duration-300 ${
     open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
   }`}
 >
-  <div class="bg-primario text-fondo shadow-xl px-6 py-6 min-w-[18rem] rounded-3xl">
+  <div class="bg-primario text-fondo shadow-xl px-6 py-6 min-w-[18rem]">
     <div class="flex justify-end">
       <button
         id="close-menu-btn"
-        class="text-fondo/80 hover:text-fondo rounded-full border border-fondo/30 px-3 py-1 text-lg"
+        class="absolute top-3 right-5 h-10 w-10 items-center justify-center text-fondo/80 transition hover:text-fondo"
         aria-label="Cerrar menú"
         type="button"
       >
-        ×
+        <span class="text-2xl leading-none">×</span>
       </button>
     </div>
 

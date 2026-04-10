@@ -65,6 +65,15 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
         setMenuOpen(false);
     });
 
+    menu?.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLElement) {
+            const link = event.target.closest("a");
+            if (link) {
+                setMenuOpen(false);
+            }
+        }
+    });
+
     document.addEventListener("click", (event) => {
         if (!open || !menu) return;
         if (event.target instanceof Node && !menu.contains(event.target) && !btn?.contains(event.target)) {
