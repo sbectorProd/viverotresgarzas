@@ -1,6 +1,8 @@
 ---
 bullets:
-  - Especies adaptadas al clima
+  - "Especies adaptadas al clima: Grevilleas, Sicomoros, Majahuas, Tabachines,
+    Jacarandas, Guamuchiles, Mezquites, Encino Belutina, Olivo negro y Pino
+    michoacano"
   - Alto estándar de sanidad y estructura
   - Logística y plantación
   - Asesoría especializada en cada etapa
