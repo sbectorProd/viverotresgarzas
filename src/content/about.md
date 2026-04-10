@@ -6,7 +6,8 @@ bullets:
   - Alto estándar de sanidad y estructura
   - "Logística y plantación: Transporte/flete, Tierra orgánica, Tierra mejorada
     y Tierra agrícola; servicio de plantado con los mejores estándares."
-  - Plantación, Servicio completo de irrigación y paisajismo.
+  - Asesoría especializada en cada etapaPlantación, Servicio completo de
+    irrigación y paisajismo.
 texto1: Trabajamos con quienes entienden el valor del paisaje como parte
   integral del proyecto.
 texto2: Nuestro enfoque no es solo vender árboles, sino asegurar su correcta
