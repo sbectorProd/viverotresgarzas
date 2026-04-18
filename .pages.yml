@@ -53,28 +53,28 @@ content:
         label: Segundo bloque de texto
         type: text
 
-  - name: proyectos
-    label: Proyectos
+  - name: servicios
+    label: servicios
     type: file
-    path: src/content/proyectos.md
+    path: src/content/servicios.md
     format: yaml-frontmatter
     fields:
       - name: encabezado
         label: Encabezado de la página
         type: string
 
-      - name: proyectos_lista
-        label: Lista de Proyectos
+      - name: servicios_lista
+        label: Lista de servicios
         type: object
         list:
           max: 4
           collapsible:
-            summary: "{titulo}" # [6] Muestra el nombre del proyecto en la lista colapsada
+            summary: "{titulo}" # [6] Muestra el nombre del servicio en la lista colapsada
         fields:
           - name: titulo
             label: Título
             type: string
-            required: true # [3] Asegura que el proyecto tenga nombre
+            required: true # [3] Asegura que el servicio tenga nombre
 
           - name: descripcion
             label: Descripción
