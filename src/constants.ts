@@ -1,6 +1,6 @@
 const menú = [
     { name: 'NOSOTROS', href: '#nosotros' },
-    { name: 'SERVICIOS', href: '#proyectos' },
+    { name: 'SERVICIOS', href: '#servicios' },
     { name: 'CONTACTO', href: '#contacto' },
 ]
 

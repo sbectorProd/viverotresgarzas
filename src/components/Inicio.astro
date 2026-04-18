@@ -1,0 +1,58 @@
+---
+import Section from "@/components/ui/Section.astro";
+import Container from "@/components/ui/Container.astro";
+import Button from "@/components/ui/Button.astro";
+import { getEntry, render } from "astro:content";
+
+const about = await getEntry("inicio", "inicio");
+
+if (!about) {
+    throw new Error("About content not found");
+}
+
+const { Content } = await render(about);
+---
+
+<Section
+    id="nosotros"
+    align="end"
+    justify="start"
+    className="relative overflow-hidden"
+>
+    {
+        about.data.fondo && (
+            <img
+                src={about.data.fondo}
+                class="absolute inset-0 w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-olive-900/65"></div>
+        )
+    }
+
+
+    <Container>
+        <div class="relative z-10 mx-auto md:mx-0 text-center md:text-left">
+            <h2
+                class="max-w-3xl text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif"
+            >
+                {about.data.linea1}
+            </h2>
+            <h2
+                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif"
+            >
+                {about.data.linea2}
+            </h2>
+        </div>
+
+        <div
+            class="relative z-10 text-sm sm:text-sm md:text-md lg:text-3xl font-extralight tracking-wider w-full max-w-prose text-primario mx-auto md:mx-0 text-center md:text-left"
+        >
+            <Content />
+        </div>
+
+        <div class="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2 justify-center sm:justify-start">
+            <Button className="w-full sm:w-auto"> → Enviar mensaje </Button>
+            <Button className="w-full sm:w-auto"> → Solicitar catálogo</Button>
+        </div>
+    </Container>
+</Section>

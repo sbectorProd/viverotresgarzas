@@ -1,16 +1,16 @@
 ---
 import { menú } from "@/constants.ts";
 import MobileMenu from "@/components/ui/MobileMenu.astro";
-import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
 ---
 
 <header
     id="site-header"
-    class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 md:px-12 py-4 md:pt-6 md:pb-1 flex justify-between items-center transition-all duration-300 bg-transparent"
+    class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 md:px-12 py-2 md:pt-6 md:pb-1 flex justify-between items-center transition-all duration-300 bg-transparent"
 >
     <!-- LOGO -->
-    <a href="#inicio">
-        <LogoHeader class="pt-1 w-32 sm:w-40 md:w-80 text-current" />
+    <a href="#inicio" class="flex items-center gap-2 sm:gap-4 lg:gap-6 text-current">
+        <span class="font-sans text-xs sm:text-sm lg:text-2xl tracking-wide">VIVERO</span>
+        <span class="font-serif font-bold sm:text-xl lg:text-4xl relative -top-0.5 lg:-top-1">TRES GARZAS</span>
     </a>
 
     <!-- DESKTOP NAV -->
@@ -92,11 +92,13 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
                         header.classList.remove("text-primario");
                         header.classList.add("bg-transparent");
                         header.classList.remove("bg-fondo");
+                        header.classList.add("mobile-mode");
                     } else {
                         header.classList.add("text-primario");
                         header.classList.remove("text-fondo");
                         header.classList.add("bg-fondo");
                         header.classList.remove("bg-transparent");
+                        header.classList.remove("mobile-mode");
                     }
                 }
             });
@@ -108,3 +110,15 @@ import LogoHeader from "@/components/ui/svg/LogoHeader.astro";
 
     sections.forEach((section) => observer.observe(section));
 </script>
+
+<style>
+    .mobile-mode nav {
+        display: none !important;
+    }
+    .mobile-mode #menu-btn {
+        display: flex !important;
+    }
+    .mobile-mode a span {
+        display: none !important;
+    }
+</style>

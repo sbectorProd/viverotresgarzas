@@ -1,30 +1,26 @@
 ---
 import Section from "@/components/ui/Section.astro";
-import Container from "@/components/ui/Container.astro";
-import Button from "@/components/ui/Button.astro";
-
-import { getEntry, render } from "astro:content";
+import Logo from "@/components/ui/svg/Logo.astro";
+import { getEntry } from "astro:content";
 
 const about = await getEntry("inicio", "inicio");
 
 if (!about) {
     throw new Error("About content not found");
 }
-
-const { Content } = await render(about);
 ---
 
 <Section
     id="inicio"
-    align="end"
-    justify="start"
-    className="relative overflow-hidden"
+    align="center"
+    justify="center"
+    className="relative overflow-hidden min-h-[80vh]"
 >
     {
         about.data.video ? (
             <video
                 src={about.data.video}
-                class="absolute inset-0 w-full h-full object-cover"
+                class="absolute inset-0 w-full h-full object-cover object-[45%_50%] sm:object-[50%_50%]"
                 autoplay
                 muted
                 loop
@@ -38,34 +34,9 @@ const { Content } = await render(about);
         )
     }
 
-    <!-- overlay para contraste -->
-    <div class="absolute inset-0 bg-olive-900/50"></div>
+    <div class="absolute inset-0 bg-olive-900/60"></div>
 
-    <!-- contenido -->
-    <Container>
-        <div class="max-w-3xl mx-auto md:mx-0 text-center md:text-left">
-            <h2
-                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-fondo font-serif"
-            >
-                {about.data.linea1}
-            </h2>
-            <h2
-                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-fondo font-serif"
-            >
-                {about.data.linea2}
-            </h2>
-        </div>
-
-        <div
-            class="text-sm sm:text-sm md:text-md lg:text-3xl font-extralight leading-relaxed tracking-wider w-full max-w-prose text-fondo mx-auto md:mx-0 text-center md:text-left"
-        >
-            <Content />
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2 justify-center sm:justify-start">
-            <Button className="w-full sm:w-auto" variant="inverse"> → Enviar mensaje </Button>
-            <Button className="w-full sm:w-auto" variant="inverse"> → Solicitar catálogo</Button
-            >
-        </div>
-    </Container>
+    <div class="relative z-10 flex min-h-[80vh] items-center justify-center px-4 py-12">
+        <Logo class="w-56 sm:w-72 md:w-80 text-fondo drop-shadow-[0_30px_70px_rgba(0,0,0,0.5)]" />
+    </div>
 </Section>
