@@ -9,23 +9,28 @@ content:
     path: src/content/inicio.md
     format: yaml-frontmatter
     fields:
-      - name: fondo
-        label: Imagen de inicio
-        type: image # [1, 2] Mejorado para mostrar previsualización de imagen
-        description: "Sube o selecciona la imagen principal de la cabecera" # [3] Ayuda al editor
+    - name: fondo
+      label: Imagen de inicio
+      type: image # Mapea a z.string() en Astro (la ruta del archivo) [1, 2]
+      description: "Sube o selecciona la imagen principal de la cabecera"
 
-      - name: linea1
-        label: Línea 1
-        type: string
+    - name: video
+      label: Video de fondo
+      type: file # Campo faltante en tu config anterior, necesario para el esquema [1, 3]
+      description: "Selecciona un archivo de video (mp4, webm)"
 
-      - name: linea2
-        label: Línea 2
-        type: string
+    - name: linea1
+      label: Línea 1
+      type: string # Mapea a z.string() [1]
 
-      - name: body
-        label: Contenido principal
-        type: rich-text # [1, 4] Mapea directamente al contenido debajo del frontmatter
-        description: "Texto que aparecerá debajo de las líneas principales"
+    - name: linea2
+      label: Línea 2
+      type: string
+
+    - name: body
+      label: Contenido principal
+      type: rich-text # Mapea al contenido markdown debajo del frontmatter [1, 4]
+      description: "Texto que aparecerá debajo de las líneas principales"
 
   - name: nosotros
     label: Nosotros
