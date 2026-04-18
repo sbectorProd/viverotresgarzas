@@ -11,6 +11,7 @@ const inicio = defineCollection({
     linea1: z.string().optional(),
     linea2: z.string().optional(),
     fondo: z.string().optional(),
+    video: z.string().optional(),
     body: z.string().optional(),
   }),
 });
@@ -27,14 +28,14 @@ const about = defineCollection({
   }),
 });
 
-const proyectos = defineCollection({
+const servicios = defineCollection({
   loader: glob({
-    pattern: "proyectos.md",
+    pattern: "servicios.md",
     base: "./src/content",
   }),
   schema: z.object({
     encabezado: z.string().optional(),
-    proyectos_lista: z.array(
+    servicios_lista: z.array(
       z.object({
         titulo: z.string().optional(),
         descripcion: z.string().optional(),
@@ -46,5 +47,5 @@ const proyectos = defineCollection({
 export const collections = {
   inicio,
   about,
-  proyectos,
+  servicios,
 };

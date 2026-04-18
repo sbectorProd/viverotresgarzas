@@ -21,7 +21,16 @@ const { Content } = await render(about);
     className="relative overflow-hidden"
 >
     {
-        about.data.fondo && (
+        about.data.video ? (
+            <video
+                src={about.data.video}
+                class="absolute inset-0 w-full h-full object-cover"
+                autoplay
+                muted
+                loop
+                playsinline
+            ></video>
+        ) : about.data.fondo && (
             <img
                 src={about.data.fondo}
                 class="absolute inset-0 w-full h-full object-cover"
