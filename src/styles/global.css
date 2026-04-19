@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@fontsource/dm-mono";
 
 @font-face {
@@ -16,7 +17,7 @@
     --text-h1: clamp(2rem, 1.2rem + 4vw, 4.375rem);
     --text-h2: clamp(1.5rem, 1rem + 2.8vw, 3.125rem);
     --text-body-lg: clamp(1rem, 0.7rem + 1.7vw, 1.875rem);
-    --text-body: clamp(0.875rem, 0.8rem + 0.45vw, 1.125rem);
+    --text-body: clamp(1rem, 0.9rem + 0.8vw, 1.875rem);
     --text-sm: 0.875rem;
     --text-xs: 0.75rem;
     --text-nav: clamp(0.875rem, 0.8rem + 0.75vw, 1.5rem);

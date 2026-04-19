@@ -22,7 +22,7 @@ const { Content } = await render(about);
     <Container>
         <div class="relative z-10 mx-auto md:mx-0 text-center md:text-left">
             <h2
-                class="max-w-3xl type-h1 text-primario"
+                class="type-h1 text-primario"
             >
                 {about.data.linea1}
             </h2>
@@ -34,7 +34,7 @@ const { Content } = await render(about);
         </div>
 
         <div
-            class="relative z-10 type-body md:type-body-lg font-extralight w-full max-w-prose text-primario mx-auto md:mx-0 text-center md:text-left"
+            class="relative z-10 prose type-body md:type-body-lg font-extralight w-full max-w-prose text-primario mx-auto md:mx-0 text-center md:text-left"
         >
             <Content />
         </div>
