@@ -2,13 +2,23 @@
 import Section from "@/components/ui/Section.astro";
 import Container from "@/components/ui/Container.astro";
 import Button from "@/components/ui/Button.astro";
+import LogoWA from "@/components/ui/svg/LogoWA.astro";
 ---
 
 <Section id="contacto" align="end" justify="start" className="text-primario">
 	<Container className="max-w-6xl">
 		<div class="mx-auto w-full max-w-4xl space-y-8 px-1 sm:px-0">
-			<div class="space-y-4">
-				<h2 class="type-h1 pb-8">Contáctanos</h2>
+			<div class="flex items-center gap-6 lg:gap-36 pb-8">
+				<h2 class="type-h1">Contáctanos</h2>
+				<a
+					href="https://wa.me/523312843496?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas"
+					target="_blank"
+					rel="noopener"
+					aria-label="Contáctanos por WhatsApp"
+					class="hover:scale-110 transition"
+				>
+					<LogoWA class="size-6 lg:size-10 text-primario" />
+				</a>
 			</div>
 
 			<form
@@ -65,10 +75,10 @@ import Button from "@/components/ui/Button.astro";
 						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
 					></textarea>
 				</label>
-			   <div class="pt-2">
-				   <Button variant="outline">→ Enviar</Button>
-			   </div>
-		   </form>
-	   </div>
+				<div class="pt-2">
+					<Button variant="outline">→ Enviar</Button>
+				</div>
+			</form>
+		</div>
 	</Container>
 </Section>
