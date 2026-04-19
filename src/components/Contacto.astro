@@ -14,10 +14,11 @@ import Button from "@/components/ui/Button.astro";
 			<form
 				class="grid gap-6"
 				method="POST"
+				action="/Gracias"
 				data-netlify="true"
-				onsubmit="showModal();"
-				data-netlify="true"
+				name="contacto"
 			>
+				<input type="hidden" name="form-name" value="contacto" />
 				<div class="grid gap-6 md:grid-cols-2">
 					<label class="block type-label text-primario/80">
 						NOMBRE COMPLETO*
@@ -64,52 +65,10 @@ import Button from "@/components/ui/Button.astro";
 						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
 					></textarea>
 				</label>
-
-				<div class="pt-2">
-					<Button variant="outline">→ Enviar</Button>
-				</div>
-			</form>
-		</div>
-
-		<!-- Modal de agradecimiento -->
-		<div
-			id="modal-gracias"
-			class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm hidden"
-		>
-			<div
-				class="bg-fondo rounded-3xl shadow-xl px-8 py-10 max-w-sm w-full text-center flex flex-col items-center gap-6"
-			>
-				<span class="type-h2 text-primario"
-					>¡Gracias por tu mensaje!</span
-				>
-				<p class="type-body text-primario/80">
-					Nos pondremos en contacto contigo lo antes posible.
-				</p>
-				<button
-					onclick="closeModal()"
-					class="mt-2 px-6 py-2 rounded-xl bg-primario text-fondo type-body transition hover:bg-primario/80"
-					>Cerrar</button
-				>
-			</div>
-		</div>
-
-		<script is:inline>
-			function showModal() {
-				document
-					.getElementById("modal-gracias")
-					.classList.remove("hidden");
-			}
-			function closeModal() {
-				document
-					.getElementById("modal-gracias")
-					.classList.add("hidden");
-			}
-			// Cierra el modal al hacer click fuera del cuadro
-			document.addEventListener("click", function (e) {
-				const modal = document.getElementById("modal-gracias");
-				if (!modal || modal.classList.contains("hidden")) return;
-				if (e.target === modal) closeModal();
-			});
-		</script>
+			   <div class="pt-2">
+				   <Button variant="outline">→ Enviar</Button>
+			   </div>
+		   </form>
+	   </div>
 	</Container>
 </Section>
