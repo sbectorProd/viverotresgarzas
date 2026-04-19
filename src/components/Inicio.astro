@@ -19,17 +19,6 @@ const { Content } = await render(about);
     justify="start"
     className="relative overflow-hidden pt-16 sm:pt-20 md:pt-24 py-5 sm:py-7 md:py-12"
 >
-    {
-        about.data.fondo && (
-            <img
-                src={about.data.fondo}
-                class="absolute inset-0 w-full h-full object-cover"
-            />
-            <div class="absolute inset-0 bg-olive-900/65"></div>
-        )
-    }
-
-
     <Container>
         <div class="relative z-10 mx-auto md:mx-0 text-center md:text-left">
             <h2
