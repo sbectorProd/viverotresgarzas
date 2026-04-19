@@ -77,6 +77,11 @@ content:
         label: Encabezado de la página
         type: string
 
+      - name: imagen
+        label: Imagen de servicios
+        type: image
+        description: "Foto que aparece junto a la lista de servicios"
+
       - name: servicios_lista
         label: Lista de servicios
         type: object

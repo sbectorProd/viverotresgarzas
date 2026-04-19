@@ -44,6 +44,7 @@ const servicios = defineCollection({
   }),
   schema: z.object({
     encabezado: z.string().optional(),
+    imagen: z.string().optional(),
     servicios_lista: z.array(
       z.object({
         titulo: z.string().optional(),

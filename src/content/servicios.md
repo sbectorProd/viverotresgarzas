@@ -1,5 +1,6 @@
 ---
 encabezado: Somos tu aliado técnico en paisaje.
+imagen: /EMIF9437.webp
 servicios_lista:
   - titulo: Selección especializada
     descripcion: Especies adaptadas al clima local, elegidas por su desempeño urbano y longevidad.
