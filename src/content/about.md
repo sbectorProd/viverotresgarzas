@@ -2,7 +2,7 @@
 bullets:
   - title: Especies adaptadas al clima
     text: Sicomoro, Grevilea, Mezquite, Guamuchil, Majahua, Tebachín, Encino Siempre
-      Verde y Pino Michoacana, Arrayán, Rosamorada, Olivo Negro y Jacaranda.
+      Verde, Pino Michoacana, Arrayán, Rosamorada, Olivo Negro y Jacaranda.
     image: /Bullets/EMIF9466.webp
   - title: Sanidad y estructura
     text: Irrigación periódica y controlada, bolsas geotextiles, sustrato
