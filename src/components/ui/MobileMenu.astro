@@ -27,7 +27,13 @@ const { open } = Astro.props as Props;
 
     <nav class="flex flex-col gap-4 type-nav mt-4">
       {menú.map(item => (
-        <a href={item.href} class="hover:opacity-70">{item.name}</a>
+        <a
+          href={item.href}
+          class="hover:opacity-70"
+          data-nav-link={item.href.slice(1)}
+        >
+          {item.name}
+        </a>
       ))}
     </nav>
   </div>

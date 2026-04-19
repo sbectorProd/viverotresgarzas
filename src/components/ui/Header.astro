@@ -3,23 +3,29 @@ import { menú } from "@/constants.ts";
 import MobileMenu from "@/components/ui/MobileMenu.astro";
 ---
 
+
 <header
     id="site-header"
     class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 md:px-12 py-4 md:py-4 flex justify-between items-center transition-all duration-300 bg-transparent"
 >
     <!-- LOGO -->
-    <a href="#inicio" class="flex items-center gap-2 sm:gap-4 lg:gap-6 text-current">
-        <span class="font-sans type-nav">VIVERO</span>
-        <span class="type-brand font-bold relative lg:-top-1">TRES GARZAS</span>
+    <a href="#inicio" id="site-logo" class="flex items-center gap-2 sm:gap-4 lg:gap-6">
+        <span id="logo-span-1" class="font-sans type-nav">VIVERO</span>
+        <span id="logo-span-2" class="type-brand font-bold relative lg:-top-1">TRES GARZAS</span>
     </a>
 
     <!-- DESKTOP NAV -->
     <nav
-        class="hidden md:flex gap-8 lg:gap-12 type-nav text-current"
+        id="site-nav"
+        class="hidden md:flex gap-8 lg:gap-12 type-nav"
     >
         {
             menú.map((item) => (
-                <a href={item.href} class="hover:opacity-70">
+                <a
+                    href={item.href}
+                    class="hover:opacity-70"
+                    data-nav-link={item.href.slice(1)}
+                >
                     {item.name}
                 </a>
             ))
@@ -28,9 +34,9 @@ import MobileMenu from "@/components/ui/MobileMenu.astro";
 
     <!-- HAMBURGER -->
     <button id="menu-btn" class="md:hidden flex flex-col gap-1.5">
-        <span class="w-6 h-0.5 bg-current"></span>
-        <span class="w-6 h-0.5 bg-current"></span>
-        <span class="w-6 h-0.5 bg-current"></span>
+        <span id="hamburger-bar-1" class="w-6 h-0.5"></span>
+        <span id="hamburger-bar-2" class="w-6 h-0.5"></span>
+        <span id="hamburger-bar-3" class="w-6 h-0.5"></span>
     </button>
 
     <!-- MENU -->
@@ -38,42 +44,53 @@ import MobileMenu from "@/components/ui/MobileMenu.astro";
 </header>
 
 <script>
-    const header = document.getElementById("site-header") as HTMLElement;
-    const sections = document.querySelectorAll("section");
+    // --- DOM refs ---
+    const header = document.getElementById("site-header");
+    const logoSpan1 = document.getElementById("logo-span-1");
+    const logoSpan2 = document.getElementById("logo-span-2");
+    const nav = document.getElementById("site-nav");
+    const navLinks = document.querySelectorAll("[data-nav-link]");
     const btn = document.getElementById("menu-btn");
     const closeBtn = document.getElementById("close-menu-btn");
     const menu = document.querySelector("[data-mobile-menu]");
+    const hamburgerBars = [
+        document.getElementById("hamburger-bar-1"),
+        document.getElementById("hamburger-bar-2"),
+        document.getElementById("hamburger-bar-3"),
+    ];
+    // --- Carousel slide observer ---
+    const firstSlide = document.getElementById("slide-0");
+    // --- Section observer for nav underline ---
+    const sections = document.querySelectorAll("section[id]");
+    const scrollRoot = document.querySelector("main");
+    const trackedIds = new Set(["nosotros", "servicios", "contacto"]);
 
     let open = false;
+    const visibilityById = new Map();
+    let currentSection = "inicio";
 
+    // --- Menu logic ---
     const setMenuOpen = (value: boolean) => {
         open = value;
-
         if (menu) {
             menu.classList.toggle("opacity-0", !open);
             menu.classList.toggle("pointer-events-none", !open);
         }
     };
-
     btn?.addEventListener("click", (event) => {
         event.stopPropagation();
         setMenuOpen(!open);
     });
-
     closeBtn?.addEventListener("click", (event) => {
         event.stopPropagation();
         setMenuOpen(false);
     });
-
     menu?.addEventListener("click", (event) => {
         if (event.target instanceof HTMLElement) {
             const link = event.target.closest("a");
-            if (link) {
-                setMenuOpen(false);
-            }
+            if (link) setMenuOpen(false);
         }
     });
-
     document.addEventListener("click", (event) => {
         if (!open || !menu) return;
         if (event.target instanceof Node && !menu.contains(event.target) && !btn?.contains(event.target)) {
@@ -81,44 +98,121 @@ import MobileMenu from "@/components/ui/MobileMenu.astro";
         }
     });
 
+    // --- Color logic ---
+    function setHeaderColors({ logo, nav: navColor, hamburger }: { logo: string, nav: string, hamburger: string }) {
+        // Logo
+        if (logoSpan1) {
+            logoSpan1.classList.remove("text-fondo", "text-primario");
+            logoSpan1.classList.add(logo);
+        }
+        if (logoSpan2) {
+            logoSpan2.classList.remove("text-fondo", "text-primario");
+            logoSpan2.classList.add(logo);
+        }
+        // Nav
+        if (nav) {
+            nav.classList.remove("text-fondo", "text-primario");
+            nav.classList.add(navColor);
+        }
+        // Hamburger
+        hamburgerBars.forEach(bar => {
+            if (bar) {
+                bar.classList.remove("bg-fondo", "bg-primario");
+                bar.classList.add(hamburger);
+            }
+        });
+    }
+
+    // --- Section observer for nav underline and color logic ---
+    const setActiveLink = (sectionId: string) => {
+        navLinks.forEach((link) => {
+            link.classList.remove("is-active");
+            link.removeAttribute("aria-current");
+        });
+        if (!sectionId || !trackedIds.has(sectionId)) return;
+        navLinks.forEach((link) => {
+            if (link instanceof HTMLElement && link.dataset.navLink === sectionId) {
+                link.classList.add("is-active");
+                link.setAttribute("aria-current", "page");
+            }
+        });
+    };
+
+    // --- Main observer for section and slide ---
+    function updateHeaderColors(): void {
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+        if (currentSection === "inicio") {
+            setHeaderColors({ logo: "text-fondo", nav: "text-fondo", hamburger: "bg-fondo" });
+        } else if (firstSlide && (firstSlide as any)._isVisible) {
+            setHeaderColors({
+                logo: isMobile ? "text-fondo" : "text-primario",
+                nav: "text-fondo",
+                hamburger: "bg-fondo"
+            });
+        } else {
+            setHeaderColors({ logo: "text-primario", nav: "text-primario", hamburger: "bg-primario" });
+        }
+    }
+
+    // --- Section observer ---
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-
-                    if (id === "inicio") {
-                        header.classList.add("text-fondo");
-                        header.classList.remove("text-primario");
-                        header.classList.add("bg-transparent");
-                        header.classList.remove("bg-fondo");
-                        header.classList.add("mobile-mode");
-                    } else {
-                        header.classList.add("text-primario");
-                        header.classList.remove("text-fondo");
-                        header.classList.add("bg-fondo");
-                        header.classList.remove("bg-transparent");
-                        header.classList.remove("mobile-mode");
-                    }
+                const section = entry.target;
+                visibilityById.set(section.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+            });
+            let mostVisibleId = "inicio";
+            let maxRatio = -1;
+            visibilityById.forEach((ratio, id) => {
+                if (ratio > maxRatio) {
+                    mostVisibleId = id;
+                    maxRatio = ratio;
                 }
             });
+            currentSection = mostVisibleId;
+            setActiveLink(mostVisibleId);
+            updateHeaderColors();
         },
         {
-            threshold: 0.6,
+            root: scrollRoot,
+            threshold: [0, 0.25, 0.5, 0.75, 1],
         },
     );
-
     sections.forEach((section) => observer.observe(section));
+
+    // --- First slide observer ---
+    if (firstSlide) {
+        const slideObserver = new window.IntersectionObserver(
+            ([entry]: IntersectionObserverEntry[]) => {
+                (firstSlide as any)._isVisible = entry && entry.isIntersecting && entry.intersectionRatio > 0.5;
+                updateHeaderColors();
+            },
+            { threshold: [0, 0.5, 1] }
+        );
+        slideObserver.observe(firstSlide);
+    }
+    // Initial color set
+    updateHeaderColors();
 </script>
 
 <style>
-    .mobile-mode nav {
-        display: none !important;
+    :global([data-nav-link]) {
+        position: relative;
+        padding-bottom: 0.2rem;
     }
-    .mobile-mode #menu-btn {
-        display: flex !important;
+
+    :global([data-nav-link]::after) {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        transition: width 0.25s ease;
     }
-    .mobile-mode a span {
-        display: none !important;
+
+    :global([data-nav-link].is-active::after) {
+        width: 100%;
     }
 </style>
