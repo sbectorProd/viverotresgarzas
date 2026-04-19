@@ -10,10 +10,80 @@
 
 @theme {
     --font-sans: "DM Mono", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Zodiak-Light", serif;
+
+    /* Tipografia */
+    --text-h1: clamp(2rem, 1.2rem + 4vw, 4.375rem);
+    --text-h2: clamp(1.5rem, 1rem + 2.8vw, 3.125rem);
+    --text-body-lg: clamp(1rem, 0.7rem + 1.7vw, 1.875rem);
+    --text-body: clamp(0.875rem, 0.8rem + 0.45vw, 1.125rem);
+    --text-sm: 0.875rem;
+    --text-xs: 0.75rem;
+    --text-nav: clamp(0.875rem, 0.8rem + 0.75vw, 1.5rem);
+    --text-brand: clamp(1.125rem, 0.9rem + 1.4vw, 2.25rem);
+
+    --tracking-tight: -0.025em;
+    --tracking-wide: 0.025em;
+    --tracking-label: 0.35em;
+
+    --leading-tight: 1.05;
+    --leading-body: 1.5;
+
     /* Colores */
     --color-fondo: #F8F6E1;
     --color-primario: #355C35;
-    --font-serif: "Zodiak-Light", serif;
+}
+
+@layer utilities {
+    .type-h1 {
+        font-family: var(--font-serif);
+        font-size: var(--text-h1);
+        font-weight: 300;
+        letter-spacing: var(--tracking-tight);
+        line-height: var(--leading-tight);
+    }
+
+    .type-h2 {
+        font-family: var(--font-serif);
+        font-size: var(--text-h2);
+        font-weight: 300;
+        letter-spacing: var(--tracking-tight);
+        line-height: var(--leading-tight);
+    }
+
+    .type-body {
+        font-size: var(--text-body);
+        letter-spacing: var(--tracking-wide);
+        line-height: var(--leading-body);
+    }
+
+    .type-body-lg {
+        font-size: var(--text-body-lg);
+        letter-spacing: var(--tracking-wide);
+        line-height: var(--leading-body);
+    }
+
+    .type-sm {
+        font-size: var(--text-sm);
+    }
+
+    .type-nav {
+        font-size: var(--text-nav);
+        letter-spacing: var(--tracking-wide);
+    }
+
+    .type-brand {
+        font-family: var(--font-serif);
+        font-size: var(--text-brand);
+        letter-spacing: var(--tracking-tight);
+        line-height: var(--leading-tight);
+    }
+
+    .type-label {
+        font-size: var(--text-xs);
+        letter-spacing: var(--tracking-label);
+        text-transform: uppercase;
+    }
 }
 
 html,

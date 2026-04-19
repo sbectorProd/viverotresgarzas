@@ -17,7 +17,7 @@ const { Content } = await render(about);
     id="nosotros"
     align="end"
     justify="start"
-    className="relative overflow-hidden"
+    className="relative overflow-hidden pt-16 sm:pt-20 md:pt-24 py-5 sm:py-7 md:py-12"
 >
     {
         about.data.fondo && (
@@ -33,19 +33,19 @@ const { Content } = await render(about);
     <Container>
         <div class="relative z-10 mx-auto md:mx-0 text-center md:text-left">
             <h2
-                class="max-w-3xl text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif"
+                class="max-w-3xl type-h1 text-primario"
             >
                 {about.data.linea1}
             </h2>
             <h2
-                class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif"
+                class="type-h1 text-primario"
             >
                 {about.data.linea2}
             </h2>
         </div>
 
         <div
-            class="relative z-10 text-sm sm:text-sm md:text-md lg:text-3xl font-extralight tracking-wider w-full max-w-prose text-primario mx-auto md:mx-0 text-center md:text-left"
+            class="relative z-10 type-body md:type-body-lg font-extralight w-full max-w-prose text-primario mx-auto md:mx-0 text-center md:text-left"
         >
             <Content />
         </div>

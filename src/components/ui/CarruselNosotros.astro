@@ -9,11 +9,11 @@ const defaultImages = [
 ];
 ---
 
-<div class="relative w-full h-full max-h-[80vh]">
+<div class="relative w-full h-dvh">
     <div
-        class="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar py-10"
+        class="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar flex h-full"
     >
-        <div class="flex gap-10">
+        <div class="flex h-full">
             {
                 slides.map((slide, index) => {
                     const item =
@@ -27,25 +27,25 @@ const defaultImages = [
                     return (
                         <article
                             id={`slide-${index}`}
-                            class="snap-center shrink-0 w-full max-w-300 mx-auto h-full"
+                            class="relative snap-center shrink-0 w-dvw h-full"
                         >
-                            <div class="flex flex-col lg:flex-row h-full">
-                                <div class="flex flex-col justify-center px-8 py-12 lg:px-16 text-primario">
+                            <div class="absolute top-0 right-0 w-full lg:w-1/2 h-full overflow-hidden">
+                                <img
+                                    src={image}
+                                    alt={title ?? text.substring(0, 50)}
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="relative z-10 flex flex-col justify-end h-full w-full lg:w-1/2 px-8 pb-16 lg:px-16 lg:pb-20 text-primario">
+                                <div class="bg-fondo/80 backdrop-blur-sm rounded-xl px-5 py-4 lg:bg-transparent lg:backdrop-blur-none lg:p-0">
                                     {title && (
-                                        <h3 class="mb-6 text-3xl lg:text-5xl font-serif tracking-tight text-primario">
+                                        <h3 class="mb-3 lg:mb-6 type-h2 text-primario">
                                             {title}
                                         </h3>
                                     )}
-                                    <p class="max-w-md text-base lg:text-lg leading-relaxed text-olive-800">
+                                    <p class="max-w-md type-body text-primario/80">
                                         {text}
                                     </p>
-                                </div>
-                                <div class="relative w-full lg:w-1/2 aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
-                                    <img
-                                        src={image}
-                                        alt={title ?? text.substring(0, 50)}
-                                        class="h-full w-full object-cover"
-                                    />
                                 </div>
                             </div>
                         </article>
@@ -55,12 +55,12 @@ const defaultImages = [
         </div>
     </div>
 
-    <div class="absolute bottom-4 left-4 flex flex-wrap justify-center gap-3">
+    <div class="absolute bottom-6 left-8 lg:left-16 z-20 flex gap-3">
         {
             slides.map((slide, index) => (
                 <a
                     href={`#slide-${index}`}
-                    class="inline-flex h-2.5 w-2.5 rounded-full bg-olive-300/70 transition-all duration-300 hover:bg-primario"
+                    class="inline-flex h-3 w-3 rounded-full border border-primario/50 transition-all duration-300 first:bg-primario hover:bg-primario/50"
                     aria-label={`Ir al slide ${index + 1}`}
                 />
             ))

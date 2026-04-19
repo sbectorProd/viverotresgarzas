@@ -21,11 +21,11 @@ const { open } = Astro.props as Props;
         aria-label="Cerrar menú"
         type="button"
       >
-        <span class="text-2xl leading-none">×</span>
+        <span class="type-h2">×</span>
       </button>
     </div>
 
-    <nav class="flex flex-col gap-4 text-lg mt-4">
+    <nav class="flex flex-col gap-4 type-nav mt-4">
       {menú.map(item => (
         <a href={item.href} class="hover:opacity-70">{item.name}</a>
       ))}

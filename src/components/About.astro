@@ -1,7 +1,7 @@
 ---
 import Section from "@/components/ui/Section.astro";
 import Container from "@/components/ui/Container.astro";
-import Carrusel from "@/components/ui/Carrusel.astro";
+import CarruselNosotros from "@/components/ui/CarruselNosotros.astro";
 
 import { getEntry } from "astro:content";
 
@@ -15,22 +15,22 @@ const bullets = about.data.bullets ?? [];
 ---
 
 <!-- 🔹 SECCIÓN 1: CARRUSEL -->
-<Section id="nosotros" align="start" justify="center">
-	<Carrusel items={bullets} />
+<Section id="nosotros" align="start" justify="center" className="p-0! pt-0!">
+	<CarruselNosotros items={bullets} />
 </Section>
 
 <!-- 🔹 SECCIÓN 2: TEXTO -->
-<Section align="center" justify="center">
+<Section align="center" justify="center" className="pt-16 sm:pt-20 md:pt-24 py-5 sm:py-7 md:py-10">
 	<Container
-		className="flex flex-col items-center text-center gap-6 max-w-3xl"
+		className="flex flex-col items-center text-center gap-4 md:gap-6 max-w-3xl"
 	>
-		<p class="text-base lg:text-2xl tracking-wide">
+		<p class="type-body md:type-body-lg">
 			{about.data.texto1}
 		</p>
 
-		<img src="/arbol.png" alt="Árbol" class="w-16 md:w-38 py-6" />
+		<img src="/arbol.png" alt="Árbol" class="w-12 sm:w-16 md:w-38 py-4 md:py-6" />
 
-		<div class="text-base lg:text-2xl tracking-wide">
+		<div class="type-body md:type-body-lg">
 			{about.data.texto2}
 		</div>
 	</Container>

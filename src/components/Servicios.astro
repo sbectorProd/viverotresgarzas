@@ -15,7 +15,7 @@ const projects = servicios.data.servicios_lista ?? [];
 <Section id="servicios" align="end" justify="start">
 	<Container className="lg:max-w-400">
 		<div class="mb-10 max-w-170">
-			<p class="text-3xl sm:text-3xl md:text-4xl lg:text-6xl font-light tracking-tight text-primario font-serif">
+			<p class="type-h1 text-primario">
 				{servicios.data.encabezado}
 			</p>
 		</div>
@@ -23,10 +23,10 @@ const projects = servicios.data.servicios_lista ?? [];
 		<div class="grid gap-y-12 md:grid-cols-2 md:gap-x-16">
 			{projects.map((servicio) => (
 				<div class="max-w-xl text-left mx-auto md:mx-0">
-					<p class="mb-6 text-xl md:text-4xl font-serif font-medium tracking-tight text-primario">
+					<p class="mb-6 type-h2 font-medium text-primario">
 						{servicio.titulo}
 					</p>
-					<p class="text-base md:text-2xl leading-8 text-primario/80 tracking-wide">
+					<p class="type-body-lg text-primario/80">
 						{servicio.descripcion}
 					</p>
 				</div>
