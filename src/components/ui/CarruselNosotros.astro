@@ -11,7 +11,10 @@ const defaultImages = [
 
 <div class="relative w-full h-dvh">
     <div
+        id="carousel-track"
         class="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar flex h-full"
+        tabindex="0"
+        aria-label="Carrusel de slides"
     >
         <div class="flex h-full">
             {
@@ -28,6 +31,7 @@ const defaultImages = [
                         <article
                             id={`slide-${index}`}
                             class="relative snap-center shrink-0 w-dvw h-full"
+                            data-slide-idx={index}
                         >
                             <div class="absolute top-0 right-0 w-full lg:w-1/2 h-full overflow-hidden">
                                 <img
@@ -55,13 +59,14 @@ const defaultImages = [
         </div>
     </div>
 
-    <div class="absolute bottom-6 left-8 lg:left-16 z-20 flex gap-3">
+    <div id="carousel-dots" class="absolute bottom-6 left-8 lg:left-16 z-20 flex gap-3">
         {
             slides.map((slide, index) => (
-                <a
-                    href={`#slide-${index}`}
-                    class="inline-flex h-3 w-3 rounded-full border border-primario/50 transition-all duration-300 first:bg-primario hover:bg-primario/50"
+                <button
+                    type="button"
+                    class="inline-flex h-3 w-3 rounded-full border transition-all duration-300 bg-transparent border-fondo md:border-primario/50 md:bg-transparent"
                     aria-label={`Ir al slide ${index + 1}`}
+                    data-dot-idx={index}
                 />
             ))
         }
@@ -75,5 +80,83 @@ const defaultImages = [
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        .dot-active {
+            background-color: var(--color-fondo, #fff);
+            border-color: var(--color-fondo, #fff);
+        }
+        @media (min-width: 768px) {
+            .dot-active {
+                background-color: var(--color-primario, #1a202c);
+                border-color: var(--color-primario, #1a202c);
+            }
+        }
     </style>
+
+    <script type="module">
+        const track = document.getElementById('carousel-track');
+        const slides = Array.from(track.querySelectorAll('[data-slide-idx]'));
+        const dots = Array.from(document.querySelectorAll('[data-dot-idx]'));
+        let activeIdx = 0;
+
+        function setActiveDot(idx) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('dot-active', i === idx);
+            });
+        }
+
+        function scrollToSlide(idx, smooth = true) {
+            const slide = slides[idx];
+            if (!slide) return;
+            slide.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', inline: 'center', block: 'nearest' });
+            activeIdx = idx;
+            setActiveDot(idx);
+        }
+
+        function getMostVisibleSlideIdx() {
+            let maxVisible = 0, maxIdx = 0;
+            slides.forEach((slide, idx) => {
+                const rect = slide.getBoundingClientRect();
+                const visible = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+                if (visible > maxVisible) {
+                    maxVisible = visible;
+                    maxIdx = idx;
+                }
+            });
+            return maxIdx;
+        }
+
+        function syncActiveDotWithScroll() {
+            const idx = getMostVisibleSlideIdx();
+            if (idx !== activeIdx) {
+                activeIdx = idx;
+                setActiveDot(idx);
+            }
+        }
+
+        // Dots click
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                scrollToSlide(idx);
+            });
+        });
+
+        // Scroll/Swipe sync
+        track.addEventListener('scroll', () => {
+            syncActiveDotWithScroll();
+        }, { passive: true });
+
+        // Init
+        setActiveDot(0);
+
+        // Fallback for browsers without smooth scroll
+        if (!('scrollBehavior' in document.documentElement.style)) {
+            scrollToSlide = function(idx) {
+                const slide = slides[idx];
+                if (!slide) return;
+                slide.scrollIntoView();
+                activeIdx = idx;
+                setActiveDot(idx);
+            };
+        }
+    </script>
 </div>
