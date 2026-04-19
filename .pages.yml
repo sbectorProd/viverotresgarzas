@@ -40,18 +40,24 @@ content:
     fields:
       - name: bullets
         label: Puntos clave (Bullets)
-        type: block
+        type: object
         list:
-          max: 4 # Limita la lista a un máximo de 4 elementos [3]
-        description: "Elige entre un texto simple o un bloque con imagen (Límite 4 bullets)"
-        blocks:
-    # Este bloque representará la parte z.string() de tu unión
-          - name: simple
-            label: Texto Simple
-            fields:
-          - name: value # Astro recibirá un objeto con esta clave
-            label: Contenido
+          max: 4
+          collapsible:
+            summary: "{title}"
+        fields:
+          - name: title
+            label: Título
             type: string
+            required: true
+          - name: text
+            label: Texto
+            type: text
+            required: true
+          - name: image
+            label: Imagen
+            type: image
+            description: "Imagen que se mostrará al lado derecho del slide"
 
       - name: texto1
         label: Primer bloque de texto
