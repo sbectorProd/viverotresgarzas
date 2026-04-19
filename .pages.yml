@@ -68,7 +68,7 @@ content:
         type: text
 
   - name: servicios
-    label: servicios
+    label: Servicios
     type: file
     path: src/content/servicios.md
     format: yaml-frontmatter
