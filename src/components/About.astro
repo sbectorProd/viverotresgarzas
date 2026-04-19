@@ -1,9 +1,9 @@
 ---
 import Section from "@/components/ui/Section.astro";
 import Container from "@/components/ui/Container.astro";
-import Logo from "@/components/ui/svg/Logo.astro";
+import Carrusel from "@/components/ui/Carrusel.astro";
 
-import { getEntry, render } from "astro:content";
+import { getEntry } from "astro:content";
 
 const about = await getEntry("about", "about");
 
@@ -12,68 +12,11 @@ if (!about) {
 }
 
 const bullets = about.data.bullets ?? [];
-const [bullet1, bullet2, bullet3, bullet4] = bullets;
-const { Content } = await render(about);
 ---
 
-<!-- 🔹 SECCIÓN 1: DIAGRAMA -->
-<Section id="nosotros" align="end" justify="center">
-	<Container
-		className="relative flex flex-col items-center justify-center gap-10 md:min-w-7/8 md:gap-0 min-h-[80dvh]"
-	>
-		<!-- 🟢 MOBILE (stack) -->
-		<div
-			class="flex flex-col items-center text-center gap-6 md:hidden text-base max-w-xl mx-auto"
-		>
-			{bullets.map((item) => (
-				<p> → {item}</p>
-			))}
-
-			<Logo class="w-20 text-current" />
-		</div>
-
-		<!-- 🟢 DESKTOP (diagrama) -->
-		<div class="hidden md:block w-full h-full">
-			<!-- IZQUIERDA -->
-			{bullet1 && (
-				<div
-					class="max-w-xs absolute left-0 top-1/4 -translate-y-1/2 text-base lg:text-2xl"
-				>
-					{bullet1}
-				</div>
-			)}
-
-			{bullet3 && (
-				<div
-					class="max-w-xs absolute left-0 bottom-1/4 translate-y-1/2 text-base lg:text-2xl"
-				>
-					{bullet3}
-				</div>
-			)}
-
-			<!-- DERECHA -->
-			{bullet2 && (
-				<div
-					class="max-w-xs absolute right-0 top-1/4 -translate-y-1/2 text-base lg:text-2xl"
-				>
-					{bullet2}
-				</div>
-			)}
-
-			{bullet4 && (
-				<div
-					class="max-w-xs absolute right-0 bottom-1/4 translate-y-1/2 text-base lg:text-2xl"
-				>
-					{bullet4}
-				</div>
-			)}
-
-			<!-- CENTRO -->
-			<div class="absolute inset-0 flex items-center justify-center">
-				<Logo class="w-20 lg:w-30 text-current" />
-			</div>
-		</div>
-	</Container>
+<!-- 🔹 SECCIÓN 1: CARRUSEL -->
+<Section id="nosotros" align="start" justify="center">
+	<Carrusel items={bullets} />
 </Section>
 
 <!-- 🔹 SECCIÓN 2: TEXTO -->

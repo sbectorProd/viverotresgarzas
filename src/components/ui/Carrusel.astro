@@ -1,0 +1,79 @@
+---
+const { items = [] } = Astro.props;
+const slides = Array.isArray(items) ? items : [];
+const defaultImages = [
+    "/EMIF9474.webp",
+    "/EMIF9470.webp",
+    "/EMIF9424.webp",
+    "/EMIF9474.webp",
+];
+---
+
+<div class="relative w-full h-full max-h-[80vh] pt-8">
+    <div
+        class="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar py-10"
+    >
+        <div class="flex gap-10">
+            {
+                slides.map((slide, index) => {
+                    const item =
+                        typeof slide === "string" ? { text: slide } : slide;
+                    const title = item.title;
+                    const text = item.text ?? item.title ?? "";
+                    const image =
+                        item.image ??
+                        defaultImages[index % defaultImages.length];
+
+                    return (
+                        <article
+                            id={`slide-${index}`}
+                            class="snap-center shrink-0 w-full max-w-300 mx-auto h-full"
+                        >
+                            <div class="flex flex-col lg:flex-row h-full">
+                                <div class="flex flex-col justify-center px-8 py-12 lg:px-16 text-primario">
+                                    {title && (
+                                        <h3 class="mb-6 text-3xl lg:text-5xl font-serif tracking-tight text-primario">
+                                            {title}
+                                        </h3>
+                                    )}
+                                    <p class="max-w-md text-base lg:text-lg leading-relaxed text-olive-800">
+                                        {text}
+                                    </p>
+                                </div>
+                                <div class="relative w-full lg:w-1/2 aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
+                                    <img
+                                        src={image}
+                                        alt={title ?? text.substring(0, 50)}
+                                        class="h-full w-full object-cover"
+                                    />
+                                </div>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </div>
+    </div>
+
+    <div class="absolute bottom-4 left-4 flex flex-wrap justify-center gap-3">
+        {
+            slides.map((slide, index) => (
+                <a
+                    href={`#slide-${index}`}
+                    class="inline-flex h-2.5 w-2.5 rounded-full bg-olive-300/70 transition-all duration-300 hover:bg-primario"
+                    aria-label={`Ir al slide ${index + 1}`}
+                />
+            ))
+        }
+    </div>
+
+    <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</div>

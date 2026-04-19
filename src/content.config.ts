@@ -22,7 +22,16 @@ const about = defineCollection({
     base: "./src/content",
   }),
   schema: z.object({
-    bullets: z.array(z.string()).optional(),
+    bullets: z.array(
+      z.union([
+        z.string(),
+        z.object({
+          title: z.string().optional(),
+          text: z.string().optional(),
+          image: z.string().optional(),
+        }),
+      ]),
+    ).optional(),
     texto1: z.string().optional(),
     texto2: z.string().optional(),
   }),
