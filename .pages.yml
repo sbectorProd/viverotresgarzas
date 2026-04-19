@@ -9,30 +9,30 @@ content:
     path: src/content/inicio.md
     format: yaml-frontmatter
     fields:
-      - name: linea1
-        label: Línea 1
-        type: string
+    - name: fondo
+      label: Imagen de inicio
+      type: image # Mapea a z.string() en Astro (la ruta del archivo) [1, 2]
+      description: "Sube o selecciona la imagen principal de la cabecera"
 
-      - name: linea2
-        label: Línea 2
-        type: string
+    - name: video
+      label: Video de fondo
+      type: file # Campo faltante en tu config anterior, necesario para el esquema [1, 3]
+      description: "Selecciona un archivo de video (mp4, webm)"
 
-      - name: fondo
-        label: Imagen de fondo
-        type: image # Mapea a z.string() [1, 2]
-        description: "Imagen principal de la cabecera"
+    - name: linea1
+      label: Línea 1
+      type: string # Mapea a z.string() [1]
 
-      - name: video
-        label: Video de fondo
-        type: file # Mapea a z.string() [1, 3]
-        description: "Archivo de video (mp4, webm)"
+    - name: linea2
+      label: Línea 2
+      type: string
 
-      - name: body
-        label: Contenido principal
-        type: rich-text # Especial: mapea al contenido debajo del frontmatter [1, 4]
-        description: "Cuerpo de texto del archivo Markdown"
+    - name: body
+      label: Contenido principal
+      type: rich-text # Mapea al contenido markdown debajo del frontmatter [1, 4]
+      description: "Texto que aparecerá debajo de las líneas principales"
 
-  - name: about
+  - name: nosotros
     label: Nosotros
     type: file
     path: src/content/about.md
@@ -40,38 +40,29 @@ content:
     fields:
       - name: bullets
         label: Puntos clave (Bullets)
-        type: block # Permite elegir entre diferentes formas de objetos (z.union) [5, 6]
-        list: true
+        type: block
+        list:
+          max: 4 # Limita la lista a un máximo de 4 elementos [3]
+        description: "Elige entre un texto simple o un bloque con imagen (Límite 4 bullets)"
         blocks:
-          - name: texto_simple
-            label: Solo Texto
+    # Este bloque representará la parte z.string() de tu unión
+          - name: simple
+            label: Texto Simple
             fields:
-              - name: value
-                label: Contenido
-                type: string
-          - name: detallado
-            label: Información Detallada
-            fields:
-              - name: title
-                label: Título
-                type: string
-              - name: text
-                label: Descripción
-                type: text # Permite varias líneas [1]
-              - name: image
-                label: Imagen
-                type: image
+          - name: value # Astro recibirá un objeto con esta clave
+            label: Contenido
+            type: string
 
       - name: texto1
         label: Primer bloque de texto
-        type: text # Ideal para párrafos largos [1]
+        type: text # [1] 'text' permite múltiples líneas, ideal para párrafos
 
       - name: texto2
         label: Segundo bloque de texto
         type: text
 
   - name: servicios
-    label: Servicios
+    label: servicios
     type: file
     path: src/content/servicios.md
     format: yaml-frontmatter
@@ -83,14 +74,15 @@ content:
       - name: servicios_lista
         label: Lista de servicios
         type: object
-        list: # Maneja el z.array(z.object({...})) de Astro [7]
+        list:
           max: 4
           collapsible:
-            summary: "{titulo}" # Mejora visual al contraer ítems [8]
+            summary: "{titulo}" # [6] Muestra el nombre del servicio en la lista colapsada
         fields:
           - name: titulo
-            label: Título del Servicio
+            label: Título
             type: string
+            required: true # [3] Asegura que el servicio tenga nombre
 
           - name: descripcion
             label: Descripción
