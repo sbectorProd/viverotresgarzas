@@ -2,20 +2,57 @@
 import "@/styles/global.css";
 import Header from "@/components/ui/Header.astro";
 import UnderConstructionBanner from "@/components/UnderConstructionBanner.astro";
+
+export interface Props {
+	title?: string;
+	description?: string;
+	canonical?: string;
+	robots?: string;
+	ogImage?: string;
+	jsonLd?: any;
+}
+
+const {
+	title = "Vivero Tres Garzas | Árboles de gran formato para proyectos paisajísticos",
+	description = "Vivero especializado en árboles de gran formato para proyectos paisajísticos, urbanísticos y residenciales. Selección técnica, sanidad, logística y plantación.",
+	canonical = "https://viverotresgarzas.com/",
+	robots = "index,follow",
+	ogImage = "/EMIF9426.webp",
+	jsonLd = null
+} = Astro.props as Props;
+
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Vivero Tres Garzas</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={canonical} />
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:locale" content="es_MX" />
+		<meta property="og:url" content={canonical} />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		{jsonLd && (
+			<script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+		)}
 	</head>
 	<body>
-		<!-- <UnderConstructionBanner /> -->
+		{/* <UnderConstructionBanner /> */}
 		<Header />
 		<slot />
 	</body>
