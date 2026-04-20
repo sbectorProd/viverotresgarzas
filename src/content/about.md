@@ -15,7 +15,7 @@ bullets:
       estándares de calidad.
     image: /Bullets/EMIF9488.webp
   - title: Asesoría especializada
-    text: Plantación, Servicio completo de irrigación y paisajismo.
+    text: Plantación, servicio completo de irrigación y paisajismo.
     image: /Bullets/EMIF9418.webp
 texto1: Colaboramos con quienes entienden el paisaje como un componente esencial
   del proyecto
