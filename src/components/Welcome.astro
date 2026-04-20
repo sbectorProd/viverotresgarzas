@@ -28,7 +28,10 @@ if (!about) {
                 loop
                 playsinline
                 poster={about.data.fondo}
+                width="1920"
+                height="1080"
                 style="display: block;"
+                aria-label="Video de árboles de gran formato en Vivero Tres Garzas"
             ></video>
         )}
         {about.data.fondo && (
@@ -36,7 +39,10 @@ if (!about) {
                 id="welcome-fallback"
                 src={about.data.fondo}
                 class="absolute inset-0 w-full h-full object-cover"
-                alt="Fondo de bienvenida"
+                alt="Árboles de gran formato en Vivero Tres Garzas"
+                width="1920"
+                height="1080"
+                loading="eager"
                 style="display: none;"
             />
         )}
@@ -44,8 +50,9 @@ if (!about) {
 
     <div class="absolute inset-0 bg-olive-900/15"></div>
 
-    <div class="relative z-10 flex min-h-[80vh] items-center justify-center px-4 py-12">
-        <Logo class="w-56 sm:w-72 md:w-80 text-fondo drop-shadow-[0_30px_70px_rgba(0,0,0,0.5)]" />
+    <div class="relative z-10 flex min-h-[80vh] items-center justify-center px-4 py-12 flex-col gap-4">
+        <h1 class="sr-only">Árboles de gran formato para proyectos que necesitan presencia desde el día uno</h1>
+        <Logo class="w-56 sm:w-72 md:w-80 text-fondo drop-shadow-[0_30px_70px_rgba(0,0,0,0.5)]" aria-hidden="true" />
     </div>
     <script type="module" is:inline>
         const video = document.getElementById('welcome-video');
