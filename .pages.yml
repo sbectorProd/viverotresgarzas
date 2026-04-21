@@ -1,4 +1,3 @@
-  
 media:
   input: public
   output: /
@@ -10,28 +9,24 @@ content:
     path: src/content/inicio.md
     format: yaml-frontmatter
     fields:
-    - name: fondo
-      label: Imagen de inicio
-      type: image # Mapea a z.string() en Astro (la ruta del archivo) [1, 2]
-      description: "Sube o selecciona la imagen principal de la cabecera"
-
-    - name: video
-      label: Video de fondo
-      type: file # Campo faltante en tu config anterior, necesario para el esquema [1, 3]
-      description: "Selecciona un archivo de video (mp4, webm)"
-
-    - name: linea1
-      label: Línea 1
-      type: string # Mapea a z.string() [1]
-
-    - name: linea2
-      label: Línea 2
-      type: string
-
-    - name: body
-      label: Contenido principal
-      type: rich-text # Mapea al contenido markdown debajo del frontmatter [1, 4]
-      description: "Texto que aparecerá debajo de las líneas principales"
+      - name: linea1
+        label: Línea 1
+        type: string
+      - name: linea2
+        label: Línea 2
+        type: string
+      - name: fondo
+        label: Imagen de inicio
+        type: image # Proporciona previsualización [3, 4]
+        description: "Imagen principal de la cabecera"
+      - name: video
+        label: Video de fondo
+        type: file # Para archivos mp4, webm, etc. [5]
+        description: "Archivo de video para el fondo"
+      - name: body
+        label: Contenido principal
+        type: rich-text # Mapea directamente al cuerpo del Markdown [6]
+        description: "Texto que aparecerá debajo de las líneas principales"
 
   - name: nosotros
     label: Nosotros
@@ -45,7 +40,7 @@ content:
         list:
           max: 4
           collapsible:
-            summary: "{title}"
+            summary: "{title}" # Muestra el título al estar contraído [2]
         fields:
           - name: title
             label: Título
@@ -53,17 +48,15 @@ content:
             required: true
           - name: text
             label: Texto
-            type: text
+            type: text # Permite múltiples líneas [6]
             required: true
           - name: image
             label: Imagen
             type: image
-            description: "Imagen que se mostrará al lado derecho del slide"
-
+            description: "Imagen al lado derecho del slide"
       - name: texto1
         label: Primer bloque de texto
-        type: text # [1] 'text' permite múltiples líneas, ideal para párrafos
-
+        type: text
       - name: texto2
         label: Segundo bloque de texto
         type: text
@@ -77,63 +70,62 @@ content:
       - name: encabezado
         label: Encabezado de la página
         type: string
-
       - name: imagen
         label: Imagen de servicios
         type: image
-        description: "Foto que aparece junto a la lista de servicios"
-
+        description: "Foto junto a la lista de servicios"
       - name: servicios_lista
         label: Lista de servicios
         type: object
         list:
           max: 4
           collapsible:
-            summary: "{titulo}" # [6] Muestra el nombre del servicio en la lista colapsada
+            summary: "{titulo}"
         fields:
           - name: titulo
             label: Título
             type: string
-            required: true # [3] Asegura que el servicio tenga nombre
-
+            required: true
           - name: descripcion
             label: Descripción
             type: text
 
-      - name: contacto
-        label: Contacto
-        type: file
-        path: src/content/contacto.md
-        format: yaml-frontmatter
+  - name: contacto
+    label: Contacto
+    type: file
+    path: src/content/contacto.md # Corregido: Ahora es un archivo independiente [7]
+    format: yaml-frontmatter
+    fields:
+      - name: titulo
+        label: Título de la sección
+        type: string
+      - name: whatsapp
+        label: Número de WhatsApp
+        type: string
+        description: "Formato internacional: 523312843496"
+      - name: personas
+        label: Personas de contacto
+        type: object
+        list:
+          min: 1
+          max: 6
+          collapsible:
+            summary: "{nombre}"
         fields:
-          - name: titulo
-            label: Título de la sección
+          - name: nombre
+            label: Nombre
             type: string
-          - name: whatsapp
-            label: Número de WhatsApp
+            required: true
+          - name: cargo
+            label: Cargo
             type: string
-            description: "Número en formato internacional, ej: 523312843496"
-          - name: personas
-            label: Personas de contacto
-            type: object
-            list:
-              min: 1
-              max: 6
-            fields:
-              - name: nombre
-                label: Nombre
-                type: string
-                required: true
-              - name: cargo
-                label: Cargo
-                type: string
-              - name: telefono
-                label: Teléfono (texto)
-                type: string
-              - name: telefonoLink
-                label: Teléfono (enlace)
-                type: string
-                description: "Solo dígitos, ej: 523312843496"
-              - name: email
-                label: Email
-                type: string
+          - name: telefono
+            label: Teléfono (Texto)
+            type: string
+          - name: telefonoLink
+            label: Teléfono (Enlace)
+            type: string
+            description: "Solo dígitos: 523312843496"
+          - name: email
+            label: Email
+            type: string
