@@ -8,8 +8,9 @@ personas:
   - nombre: Yves Bernard Medina
     cargo: Encargado de la producción
     email: yves@viverotresgarzas.com
-  - nombre: María
+  - nombre: Miriam Yaneth Barragán Ayala
     cargo: Encargada del vivero
-    telefono: "+52 33 12843496"
-    telefonoLink: "523312843496"
+    email: miriam@viverotresgarzas.com
+    telefono: "+52 33 10618422"
+    telefonoLink: "523310618422"
 ---

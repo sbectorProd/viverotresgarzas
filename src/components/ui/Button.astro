@@ -1,12 +1,14 @@
 ---
 interface Props {
   href?: string;
+  target?: string;
   variant?: "outline" | "solid" | "inverse";
   className?: string;
 }
 
 const {
   href,
+  target,
   variant = "outline",
   className = "",
 } = Astro.props as Props;
@@ -17,19 +19,23 @@ const base =
 const variants = {
   outline:
     "border border-primario text-primario hover:bg-primario hover:text-fondo",
-  solid:
-    "bg-primario text-fondo hover:bg-[#2a472a]",
-  inverse:
-    "border border-fondo text-fondo hover:bg-fondo hover:text-primario",
+  solid: "bg-primario text-fondo hover:bg-[#2a472a]",
+  inverse: "border border-fondo text-fondo hover:bg-fondo hover:text-primario",
 };
 ---
 
-{href ? (
-  <a href={href} class={`${base} ${variants[variant]} ${className} font-serif`}>
-    <slot />
-  </a>
-) : (
-  <button class={`${base} ${variants[variant]} ${className} font-serif`}>
-    <slot />
-  </button>
-)}
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      class={`${base} ${variants[variant]} ${className} font-serif`}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button class={`${base} ${variants[variant]} ${className} font-serif`}>
+      <slot />
+    </button>
+  )
+}
