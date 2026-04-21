@@ -3,15 +3,28 @@ import Section from "@/components/ui/Section.astro";
 import Container from "@/components/ui/Container.astro";
 import Button from "@/components/ui/Button.astro";
 import LogoWA from "@/components/ui/svg/LogoWA.astro";
+import LogoContacto from "@/components/ui/svg/LogoContacto.astro";
+import { getEntry } from "astro:content";
+
+const contacto = await getEntry("contacto", "contacto");
+const personas = contacto?.data?.personas ?? [];
+const titulo = contacto?.data?.titulo ?? "Contáctanos";
+const whatsapp = contacto?.data?.whatsapp ?? "";
 ---
 
-<Section id="contacto" align="end" justify="start" className="text-primario">
-	<Container className="max-w-6xl">
-		<div class="mx-auto w-full max-w-4xl space-y-8 px-1 sm:px-0">
-			<div class="flex items-center gap-6 lg:gap-36 pb-8">
-				<h2 class="type-h1">Contáctanos</h2>
+<Section
+	id="contacto"
+	align="end"
+	justify="start"
+	className="text-primario relative overflow-hidden"
+>
+	<div class="mx-auto w-full space-y-8 px-1 sm:px-0  mt-48">
+		<!-- Cabecera -->
+		<div class="flex items-center gap-6 lg:gap-36 pb-8">
+			<h2 class="type-h1">{titulo}</h2>
+			{whatsapp && (
 				<a
-					href="https://wa.me/523312843496?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas"
+					href={`https://wa.me/${whatsapp}?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
 					target="_blank"
 					rel="noopener"
 					aria-label="Contáctanos por WhatsApp"
@@ -19,66 +32,104 @@ import LogoWA from "@/components/ui/svg/LogoWA.astro";
 				>
 					<LogoWA class="size-6 lg:size-10 text-primario" />
 				</a>
-			</div>
+			)}
+		</div>
 
-			<form
-				class="grid gap-6"
-				method="POST"
-				action="/Gracias"
-				data-netlify="true"
-				name="contacto"
-			>
-				<input type="hidden" name="form-name" value="contacto" />
-				<div class="grid gap-6 md:grid-cols-2">
-					<label class="block type-label text-primario/80">
-						NOMBRE COMPLETO*
-						<input
-							type="text"
-							name="nombre"
-							class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
-						/>
-					</label>
-
-					<label class="block type-label text-primario/80">
-						CORREO ELECTRÓNICO*
-						<input
-							id="correo"
-							name="correo"
-							type="email"
-							required
-							class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
-						/>
-					</label>
-					<label class="block type-label text-primario/80">
-						TELÉFONO
-						<input
-							type="text"
-							name="telefono"
-							class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
-						/>
-					</label>
-					<label class="block type-label text-primario/80">
-						TIPO DE PROYECTO
-						<input
-							type="text"
-							name="tipo"
-							class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
-						/>
-					</label>
+		<!-- Bloque de personas de contacto -->
+		<div class="grid gap-8 md:grid-cols-3 mb-8">
+			{personas.map((persona) => (
+				<div class="flex flex-col gap-2">
+					<p class="type-body font-serif font-semibold text-primario">
+						{persona.nombre}
+					</p>
+					{persona.cargo && (
+						<p class="type-label text-primario/70">{persona.cargo}</p>
+					)}
+					{persona.telefono && persona.telefonoLink && (
+						<a
+							href={`tel:${persona.telefonoLink}`}
+							class="type-label text-primario hover:text-primario/70 transition"
+						>
+							{persona.telefono}
+						</a>
+					)}
+					{persona.email && (
+						<a
+							href={`mailto:${persona.email}`}
+							class="type-label text-primario hover:text-primario/70 transition break-all"
+						>
+							{persona.email}
+						</a>
+					)}
 				</div>
+			))}
+		</div>
+
+		<!-- Divisor -->
+		<hr class="border-primario/20 my-8" />
+
+		<!-- Formulario original (sin cambios) -->
+		<form
+			class="grid gap-6 max-w-4xl"
+			method="POST"
+			action="/Gracias"
+			data-netlify="true"
+			name="contacto"
+		>
+			<input type="hidden" name="form-name" value="contacto" />
+			<div class="grid gap-6 md:grid-cols-2">
+				<label class="block type-label text-primario/80">
+					NOMBRE COMPLETO*
+					<input
+						type="text"
+						name="nombre"
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+					/>
+				</label>
 
 				<label class="block type-label text-primario/80">
-					MENSAJE / REQUERIMIENTOS ESPECÍFICOS
-					<textarea
-						name="mensaje"
-						rows="5"
-						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
-					></textarea>
+					CORREO ELECTRÓNICO*
+					<input
+						id="correo"
+						name="correo"
+						type="email"
+						required
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+					/>
 				</label>
-				<div class="pt-2">
-					<Button variant="outline">→ Enviar</Button>
-				</div>
-			</form>
-		</div>
-	</Container>
+				<label class="block type-label text-primario/80">
+					TELÉFONO
+					<input
+						type="text"
+						name="telefono"
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+					/>
+				</label>
+				<label class="block type-label text-primario/80">
+					TIPO DE PROYECTO
+					<input
+						type="text"
+						name="tipo"
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+					/>
+				</label>
+			</div>
+
+			<label class="block type-label text-primario/80">
+				MENSAJE
+				<textarea
+					name="mensaje"
+					rows="5"
+					class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
+				></textarea>
+			</label>
+			<div class="pt-2">
+				<Button variant="outline">→ Enviar</Button>
+			</div>
+		</form>
+	</div>
+	<!-- Logo de huella dactilar en esquina inferior derecha -->
+	<div class="absolute bottom-6 right-6 pointer-events-none">
+		<LogoContacto class="w-12 sm:w-32 text-primario" />
+	</div>
 </Section>

@@ -1,3 +1,22 @@
+const contacto = defineCollection({
+  loader: glob({
+    pattern: "contacto.md",
+    base: "./src/content",
+  }),
+  schema: z.object({
+    titulo: z.string().optional(),
+    whatsapp: z.string().optional(),
+    personas: z.array(
+      z.object({
+        nombre: z.string(),
+        cargo: z.string().optional(),
+        telefono: z.string().optional(),
+        telefonoLink: z.string().optional(),
+        email: z.string().optional(),
+      })
+    ).optional(),
+  }),
+});
 import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
@@ -58,4 +77,5 @@ export const collections = {
   inicio,
   about,
   servicios,
+  contacto,
 };
