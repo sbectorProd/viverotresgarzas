@@ -31,6 +31,7 @@ const inicio = defineCollection({
     linea2: z.string().optional(),
     fondo: z.string().optional(),
     video: z.string().optional(),
+    catalogo: z.string().optional(),
     body: z.string().optional(),
   }),
 });

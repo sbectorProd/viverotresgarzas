@@ -23,6 +23,10 @@ content:
         label: Video de fondo
         type: file # Para archivos mp4, webm, etc. [5]
         description: "Archivo de video para el fondo"
+      - name: catalogo
+        label: Catálogo PDF
+        type: file
+        description: "Archivo PDF para descargar como catálogo"
       - name: body
         label: Contenido principal
         type: rich-text # Mapea directamente al cuerpo del Markdown [6]

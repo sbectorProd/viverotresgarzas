@@ -41,7 +41,9 @@ const { Content } = await render(about);
 
         <div class="relative z-10 flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2 justify-center sm:justify-start">
             <Button className="w-full sm:w-auto" href="#contacto"> → Contáctanos</Button>
-            <Button className="w-full sm:w-auto" href="../catálogo.pdf" target="_blank"> → Descargar catálogo </Button>
+                        {about.data.catalogo && (
+                            <Button className="w-full sm:w-auto" href={about.data.catalogo} target="_blank"> → Descargar catálogo </Button>
+                        )}
         </div>
     </Container>
 </Section>
