@@ -1,0 +1,21 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import Section from "@/components/ui/Section.astro"
+import Button from "@/components/ui/Button.astro"
+
+title: "Página no encontrada"
+description: "La página que buscas no existe."
+---
+<Layout
+  title="404 - Página no encontrada | Vivero Tres Garzas"
+  description="La página que buscas no existe o ha sido movida."
+  robots="noindex,follow"
+  canonical="https://viverotresgarzas.com/404"
+>
+  <Section align="center" justify="center" className="flex flex-col py-20 px-4">
+    <h1 class="type-h1 mb-6 text-green-900">404</h1>
+    <h2 class="type-h2 mb-4 text-green-800">Página no encontrada</h2>
+    <p class="type-body mb-8 text-green-800">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
+    <Button href="/">→ Volver al inicio</Button>
+  </Section>
+</Layout>
