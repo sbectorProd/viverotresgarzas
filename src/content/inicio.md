@@ -1,8 +1,7 @@
 ---
 fondo: /EMIF9437.webp
 video: /videoInicio.mp4
-linea1: Árboles de gran formato
-linea2: para proyectos que necesitan presencia desde el día uno.
+linea1: Proveedor mayorista de árboles de porte grande para desarrollos, obras y proyectos de paisajismo en Jalisco
 catalogo: /catalogo.pdf
 ---
 
