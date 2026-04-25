@@ -83,7 +83,8 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 					<input
 						type="text"
 						name="nombre"
-						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+						required
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
 					/>
 				</label>
 
@@ -94,33 +95,57 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 						name="correo"
 						type="email"
 						required
-						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
 					/>
 				</label>
 				<label class="block type-label text-primario/80">
-					TELÉFONO
+					TELÉFONO*
 					<input
 						type="text"
 						name="telefono"
-						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+						required
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
 					/>
 				</label>
 				<label class="block type-label text-primario/80">
-					TIPO DE PROYECTO
-					<input
-						type="text"
+					TIPO DE PROYECTO*
+					<select
 						name="tipo"
-						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
-					/>
+						required
+						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+					>
+						<option value="">Selecciona una opción</option>
+						<option value="Desarrollo inmobiliario">Desarrollo inmobiliario</option>
+						<option value="Obra pública">Obra pública</option>
+						<option value="Residencial/Casa habitación">Residencial/Casa habitación</option>
+						<option value="Paisajismo profesional">Paisajismo profesional</option>
+						<option value="Reforestación">Reforestación</option>
+						<option value="Otro">Otro</option>
+					</select>
 				</label>
 			</div>
+
+			<label class="block type-label text-primario/80">
+				VOLUMEN APROXIMADO*
+				<select
+					name="volumen"
+					required
+					class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
+				>
+					<option value="">Selecciona una opción</option>
+					<option value="1-10 árboles">1-10 árboles</option>
+					<option value="10-50 árboles">10-50 árboles</option>
+					<option value="50-200 árboles">50-200 árboles</option>
+					<option value="200+ árboles">200+ árboles</option>
+				</select>
+			</label>
 
 			<label class="block type-label text-primario/80">
 				MENSAJE
 				<textarea
 					name="mensaje"
 					rows="5"
-					class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-body text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
+					class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10 resize-none"
 				></textarea>
 			</label>
 			<div class="pt-2">
