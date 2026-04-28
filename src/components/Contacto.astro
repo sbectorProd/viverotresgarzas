@@ -1,6 +1,5 @@
 ---
 import Section from "@/components/ui/Section.astro";
-import Container from "@/components/ui/Container.astro";
 import Button from "@/components/ui/Button.astro";
 import LogoWA from "@/components/ui/svg/LogoWA.astro";
 import LogoContacto from "@/components/ui/svg/LogoContacto.astro";
@@ -18,7 +17,7 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 	justify="start"
 	className="text-primario relative overflow-hidden"
 >
-	<div class="mx-auto w-full space-y-8 px-1 sm:px-0  mt-48">
+	<div class="mx-auto w-full space-y-8 px-1 sm:px-0 lg:mb-12 mt-48">
 		<!-- Cabecera -->
 		<div class="flex items-center gap-6 lg:gap-36 pb-8">
 			<h2 class="type-h1">{titulo}</h2>
@@ -154,7 +153,7 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 		</form>
 	</div>
 	<!-- Logo de huella dactilar en esquina inferior derecha -->
-	<div class="absolute bottom-6 right-6 pointer-events-none">
+	<!-- <div class="absolute bottom-6 right-6 pointer-events-none">
 		<LogoContacto class="w-12 sm:w-32 text-primario" />
-	</div>
+	</div> -->
 </Section>

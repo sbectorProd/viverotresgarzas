@@ -1,0 +1,18 @@
+---
+import { getEntry } from "astro:content";
+
+const contacto = await getEntry("contacto", "contacto");
+const whatsapp = contacto?.data?.whatsapp ?? "";
+---
+
+{whatsapp && (
+	<a
+		href={`https://wa.me/${whatsapp}?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="Contáctanos por WhatsApp"
+		class="fixed bottom-4 right-4 lg:right-8 z-50 w-13.25 h-13.25 md:w-19.5 md:h-19.5"
+	>
+		<img src="/WASticky.svg" alt="" aria-hidden="true" class="w-full h-full" />
+	</a>
+)}
