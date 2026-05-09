@@ -21,52 +21,60 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 		<!-- Cabecera -->
 		<div class="flex items-center gap-6 lg:gap-36 pb-8">
 			<h2 class="type-h1">{titulo}</h2>
-			{whatsapp && (
-				<a
-					href={`https://wa.me/${whatsapp}?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
-					target="_blank"
-					rel="noopener"
-					aria-label="Contáctanos por WhatsApp"
-					class="hover:scale-110 transition"
-				>
-					<LogoWA class="size-6 lg:size-10 text-primario" />
-				</a>
-			)}
+			{
+				whatsapp && (
+					<a
+						href={`https://wa.me/${whatsapp}?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
+						target="_blank"
+						rel="noopener"
+						aria-label="Contáctanos por WhatsApp"
+						class="hover:scale-110 transition"
+					>
+						<LogoWA class="size-6 lg:size-10 text-primario" />
+					</a>
+				)
+			}
 		</div>
 
 		<!-- Bloque de personas de contacto -->
 		<div class="grid gap-8 md:grid-cols-3 mb-8">
-			{personas.map((persona) => (
-				<div class="flex flex-col gap-2">
-					<p class="type-body font-serif font-semibold text-primario">
-						{persona.nombre}
-					</p>
-					{persona.cargo && (
-						<p class="type-label text-primario/70">{persona.cargo}</p>
-					)}
-					{persona.telefono && persona.telefonoLink && (
-						<a
-							href={`tel:${persona.telefonoLink}`}
-							class="type-label text-primario hover:text-primario/70 transition"
-						>
-							{persona.telefono}
-						</a>
-					)}
-					{persona.email && (
-						<a
-							href={`mailto:${persona.email}`}
-							class="type-label text-primario hover:text-primario/70 transition break-all"
-						>
-							{persona.email}
-						</a>
-					)}
-				</div>
-			))}
+			{
+				personas.map((persona) => (
+					<div class="flex flex-col gap-2">
+						<p class="type-body font-serif font-semibold text-primario">
+							{persona.nombre}
+						</p>
+						{persona.cargo && (
+							<p class="type-label text-primario/70">
+								{persona.cargo}
+							</p>
+						)}
+						{persona.telefono && persona.telefonoLink && (
+							<a
+								href={`tel:${persona.telefonoLink}`}
+								class="type-label text-primario hover:text-primario/70 transition"
+							>
+								{persona.telefono}
+							</a>
+						)}
+						{persona.email && (
+							<a
+								href={`mailto:${persona.email}`}
+								class="type-label text-primario hover:text-primario/70 transition break-all"
+							>
+								{persona.email}
+							</a>
+						)}
+					</div>
+				))
+			}
 		</div>
 
 		<!-- Divisor -->
-		<hr class="border-primario/20 my-8" />
-
+		<hr id="cotizar-proyecto" class="border-primario/20 my-8" />
+		<p class="type-h2 pb-2 md:pb-4">
+			Cotiza tu proyecto y descarga nuestro catálogo completo
+		</p>
 		<!-- Formulario original (sin cambios) -->
 		<form
 			class="grid gap-6 max-w-4xl"
@@ -114,10 +122,16 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 						class="mt-2 w-full rounded-2xl border-3 border-current/30 bg-transparent px-4 py-3 type-label text-primario outline-none transition focus:border-primario focus:ring-2 focus:ring-primario/10"
 					>
 						<option value="">Selecciona una opción</option>
-						<option value="Desarrollo inmobiliario">Desarrollo inmobiliario</option>
+						<option value="Desarrollo inmobiliario"
+							>Desarrollo inmobiliario</option
+						>
 						<option value="Obra pública">Obra pública</option>
-						<option value="Residencial/Casa habitación">Residencial/Casa habitación</option>
-						<option value="Paisajismo profesional">Paisajismo profesional</option>
+						<option value="Residencial/Casa habitación"
+							>Residencial/Casa habitación</option
+						>
+						<option value="Paisajismo profesional"
+							>Paisajismo profesional</option
+						>
 						<option value="Reforestación">Reforestación</option>
 						<option value="Otro">Otro</option>
 					</select>
@@ -148,7 +162,7 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
 				></textarea>
 			</label>
 			<div class="pt-2">
-				<Button variant="outline">→ Enviar</Button>
+				<Button variant="solid">→ Enviar y descargar catálogo</Button>
 			</div>
 		</form>
 	</div>

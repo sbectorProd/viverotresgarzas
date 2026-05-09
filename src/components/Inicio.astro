@@ -21,73 +21,98 @@ const { Content } = await render(about);
 >
     <!-- Media Layer: Video + Fallback Image -->
     <div class="media-fallback-container absolute inset-0">
-        {about.data.video && (
-            <video
-                id="hero-video"
-                src={about.data.video}
-                class="absolute inset-0 w-full h-full object-cover object-[45%_50%] sm:object-[50%_50%]"
-                autoplay
-                muted
-                loop
-                playsinline
-                poster={about.data.fondo}
-                width="1920"
-                height="1080"
-                style="display: block;"
-                aria-label="Video de árboles de gran formato en Vivero Tres Garzas"
-            ></video>
-        )}
-        {about.data.fondo && (
-            <img
-                id="hero-fallback"
-                src={about.data.fondo}
-                class="absolute inset-0 w-full h-full object-cover"
-                alt="Árboles de gran formato en Vivero Tres Garzas"
-                width="1920"
-                height="1080"
-                loading="eager"
-                style="display: none;"
-            />
-        )}
+        {
+            about.data.video && (
+                <video
+                    id="hero-video"
+                    src={about.data.video}
+                    class="absolute inset-0 w-full h-full object-cover object-[45%_50%] sm:object-[50%_50%]"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    poster={about.data.fondo}
+                    width="1920"
+                    height="1080"
+                    style="display: block;"
+                    aria-label="Video de árboles de gran formato en Vivero Tres Garzas"
+                />
+            )
+        }
+        {
+            about.data.fondo && (
+                <img
+                    id="hero-fallback"
+                    src={about.data.fondo}
+                    class="absolute inset-0 w-full h-full object-cover"
+                    alt="Árboles de gran formato en Vivero Tres Garzas"
+                    width="1920"
+                    height="1080"
+                    loading="eager"
+                    style="display: none;"
+                />
+            )
+        }
     </div>
 
     <!-- Overlay with gradient -->
-    <div class="absolute inset-0 bg-linear-to-b md:bg-linear-to-l from-olive-950/80 md:from-black/10 via-primario-dark/80 to-primario-dark"></div>
+    <div
+        class="absolute inset-0 bg-linear-to-b md:bg-linear-to-l from-olive-950/80 md:from-black/10 via-primario-dark/80 to-primario-dark"
+    >
+    </div>
 
     <!-- Content -->
-    <Container className="max-w-275 w-full relative z-10 flex flex-col justify-center h-full">
+    <Container
+        className="max-w-275 w-full relative z-10 flex flex-col justify-center h-full"
+    >
         <div class="mx-auto md:mx-0 text-center md:text-left">
             <h1 class="type-h1 text-fondo mb-6">
                 {about.data.headline}
             </h1>
         </div>
 
-        <div class="prose type-body md:type-body-lg font-extralight w-full max-w-prose text-fondo mx-auto md:mx-0 text-center md:text-left">
+        <div
+            class="prose type-body md:type-body-lg font-extralight w-full max-w-prose text-fondo mx-auto md:mx-0 text-center md:text-left"
+        >
             <Content />
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-6 justify-center sm:justify-start">
-            <Button className="w-full sm:w-auto" href="/#contacto" variant="inverse"> → Contáctanos</Button>
-            {about.data.catalogo && (
-                <Button className="w-full sm:w-auto" href={about.data.catalogo} target="_blank" variant="inverse"> → Descargar catálogo </Button>
-            )}
+        <div
+            class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-6 justify-center sm:justify-start"
+        >
+            <Button
+                className="w-full sm:w-auto"
+                href="/#cotizar-proyecto"
+                variant="solidInverse"
+            >
+                → Cotiza tu proyecto</Button
+            >
+
+            <Button
+                className="w-full sm:w-auto"
+                href={`https://wa.me/523312843496?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
+                target="_blank"
+                variant="solidInverse"
+            >
+                → Enviar WhatsApp
+            </Button>
         </div>
     </Container>
 
     <script type="module" is:inline>
-        const video = document.getElementById('hero-video');
-        const fallback = document.getElementById('hero-fallback');
+        const video = document.getElementById("hero-video");
+        const fallback = document.getElementById("hero-fallback");
         if (video && fallback) {
-            video.addEventListener('error', () => {
-                video.style.display = 'none';
-                fallback.style.display = 'block';
+            video.addEventListener("error", () => {
+                video.style.display = "none";
+                fallback.style.display = "block";
             });
-            video.addEventListener('play', () => {
-                fallback.style.display = 'none';
+            video.addEventListener("play", () => {
+                fallback.style.display = "none";
             });
             video.play().catch(() => {
-                video.style.display = 'none';
-                fallback.style.display = 'block';
+                video.style.display = "none";
+                fallback.style.display = "block";
             });
         }
     </script>

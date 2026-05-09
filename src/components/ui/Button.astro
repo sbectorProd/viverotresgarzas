@@ -2,7 +2,7 @@
 interface Props {
   href?: string;
   target?: string;
-  variant?: "outline" | "solid" | "inverse";
+  variant?: "outline" | "solid" | "inverse" | "solidInverse";
   className?: string;
 }
 
@@ -21,6 +21,7 @@ const variants = {
     "border border-primario text-primario hover:bg-primario hover:text-fondo",
   solid: "bg-primario text-fondo hover:bg-[#2a472a]",
   inverse: "border border-fondo text-fondo hover:bg-fondo hover:text-primario",
+  solidInverse: "bg-fondo text-primario border border-transparent hover:border hover:border-fondo hover:bg-transparent hover:text-fondo",
 };
 ---
 
