@@ -34,6 +34,7 @@
     /* Colores */
     --color-fondo: #F8F6E1;
     --color-primario: #355C35;
+    --color-primario-dark: #2A472A;
 }
 
 @layer utilities {
@@ -122,5 +123,10 @@ input,
 textarea,
 a {
     -webkit-tap-highlight-color: transparent;
+}
+
+/* Anchor compensation for fixed header */
+section[id] {
+    scroll-margin-top: clamp(3rem, 5rem, 6rem);
 }
 

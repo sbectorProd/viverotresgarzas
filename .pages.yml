@@ -9,11 +9,8 @@ content:
     path: src/content/inicio.md
     format: yaml-frontmatter
     fields:
-      - name: linea1
-        label: Línea 1
-        type: string
-      - name: linea2
-        label: Línea 2
+      - name: headline
+        label: Headline
         type: string
       - name: fondo
         label: Imagen de inicio

@@ -27,8 +27,7 @@ const inicio = defineCollection({
     base: "./src/content",
   }),
   schema: z.object({
-    linea1: z.string().optional(),
-    linea2: z.string().optional(),
+    headline: z.string().optional(),
     fondo: z.string().optional(),
     video: z.string().optional(),
     catalogo: z.string().optional(),
