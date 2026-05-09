@@ -73,9 +73,24 @@ const servicios = defineCollection({
   }),
 });
 
+const autoridad = defineCollection({
+  loader: glob({
+    pattern: "autoridad.md",
+    base: "./src/content",
+  }),
+  schema: z.object({
+    items: z.array(
+      z.object({
+        texto: z.string(),
+      }),
+    ).optional(),
+  }),
+});
+
 export const collections = {
   inicio,
   about,
   servicios,
+  autoridad,
   contacto,
 };

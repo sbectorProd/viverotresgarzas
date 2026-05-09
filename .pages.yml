@@ -29,6 +29,25 @@ content:
         type: rich-text # Mapea directamente al cuerpo del Markdown [6]
         description: "Texto que aparecerá debajo de las líneas principales"
 
+  - name: autoridad
+    label: Autoridad
+    type: file
+    path: src/content/autoridad.md
+    format: yaml-frontmatter
+    fields:
+      - name: items
+        label: Ítems de credibilidad
+        type: object
+        list:
+          max: 4
+          collapsible:
+            summary: "{texto}"
+        fields:
+          - name: texto
+            label: Texto
+            type: string
+            required: true
+
   - name: nosotros
     label: Nosotros
     type: file
