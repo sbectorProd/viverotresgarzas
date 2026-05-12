@@ -37,8 +37,7 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
       class="type-body mb-12 text-primario/80 pt-0 md:pt-8 md:text-center max-w-8xl"
     >
       Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.<br
-      /> Mientras tanto, puedes descargar nuestro catálogo o seguir explorando
-      nuestro sitio.
+      /> Mientras tanto, puedes descargar nuestro catálogo.
     </p>
 
     <!-- Botón único -->
@@ -48,14 +47,11 @@ const whatsapp = contacto?.data?.whatsapp ?? "";
       </Button>
     </div>
 
-    <!-- Divisor visual -->
-    <hr class="border-primario/20 my-12 sm:my-16 w-full max-w-8xl" />
-
     <!-- Bloque de contacto -->
     <div class="w-full">
       <!-- Encabezado de contacto -->
-      <div class="flex items-center justify-center gap-4 mb-10 sm:mb-14">
-        <h2 class="type-h1 text-primario">Contáctanos</h2>
+      <div class="flex items-center justify-start gap-4 mb-10 sm:mb-14">
+        <h2 class="type-h2 text-primario">Contáctanos</h2>
         {
           whatsapp && (
             <a
