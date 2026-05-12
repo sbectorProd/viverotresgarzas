@@ -2,6 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/components/ui/Section.astro";
 import Button from "@/components/ui/Button.astro";
+import Logo from "@/components/ui/svg/Logo.astro";
+import LogoWA from "@/components/ui/svg/LogoWA.astro";
+import { getEntry } from "astro:content";
+
+const contacto = await getEntry("contacto", "contacto");
+const personas = contacto?.data?.personas ?? [];
+const whatsapp = contacto?.data?.whatsapp ?? "";
 ---
 
 <Layout
@@ -9,18 +16,92 @@ import Button from "@/components/ui/Button.astro";
   description="Hemos recibido tu mensaje. Nuestro equipo revisará tu solicitud y se pondrá en contacto contigo pronto."
   robots="noindex,follow"
   canonical="https://viverotresgarzas.com/Gracias"
+  showHeader={false}
 >
-  <Section align="center" justify="center" className="flex flex-col py-20 px-4">
-    <h1 class="type-h1 mb-6 text-green-900">¡Gracias por tu mensaje!</h1>
-    <p class="type-body mb-8 text-green-800 pt-0 md:pt-8 md:text-center">
+  <Section
+    align="center"
+    justify="center"
+    className="flex flex-col py-16 sm:py-20 md:py-24 px-4"
+  >
+    <!-- Logo Tres Garzas Vivero -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16">
+      <Logo class="w-8 sm:w-10 h-auto" />
+
+      <span class="type-brand font-bold text-primario">TRES GARZAS</span>
+      <span class="font-sans type-nav text-primario">VIVERO</span>
+    </div>
+
+    <!-- Contenido de agradecimiento -->
+    <h1 class="type-h1 mb-6 text-primario">¡Gracias por tu mensaje!</h1>
+    <p
+      class="type-body mb-12 text-primario/80 pt-0 md:pt-8 md:text-center max-w-8xl"
+    >
       Hemos recibido tu mensaje y nos pondremos en contacto contigo pronto.<br
-      />Mientras tanto, puedes descargar nuestro catálogo o seguir explorando nuestro sitio.
+      /> Mientras tanto, puedes descargar nuestro catálogo o seguir explorando
+      nuestro sitio.
     </p>
-    <div class="space-y-4 md:space-y-0 md:flex md:gap-8 pt-0 md:pt-16">
+
+    <!-- Botón único -->
+    <div class="mb-16 sm:mb-20">
       <Button href="/TRES_GARZAS.pdf" target="_blank">
-        → Descargar catálogo</Button
-      >
-      <Button href="/"> → Volver al inicio</Button>
+        → Descargar catálogo
+      </Button>
+    </div>
+
+    <!-- Divisor visual -->
+    <hr class="border-primario/20 my-12 sm:my-16 w-full max-w-8xl" />
+
+    <!-- Bloque de contacto -->
+    <div class="w-full">
+      <!-- Encabezado de contacto -->
+      <div class="flex items-center justify-center gap-4 mb-10 sm:mb-14">
+        <h2 class="type-h1 text-primario">Contáctanos</h2>
+        {
+          whatsapp && (
+            <a
+              href={`https://wa.me/${whatsapp}?text=Hola,%20quiero%20más%20información%20del%20vivero%20Tres%20Garzas`}
+              target="_blank"
+              rel="noopener"
+              aria-label="Contáctanos por WhatsApp"
+              class="hover:scale-110 transition"
+            >
+              <LogoWA class="size-6 sm:size-8 text-primario" />
+            </a>
+          )
+        }
+      </div>
+
+      <!-- Grid de personas de contacto -->
+      <div class="grid gap-8 md:grid-cols-3 max-w-8xl mx-auto">
+        {
+          personas.map((persona) => (
+            <div class="flex flex-col gap-2 text-center md:text-left">
+              <p class="type-body font-serif font-semibold text-primario">
+                {persona.nombre}
+              </p>
+              {persona.cargo && (
+                <p class="type-label text-primario/70">{persona.cargo}</p>
+              )}
+              {persona.telefono && persona.telefonoLink && (
+                <a
+                  href={`tel:${persona.telefonoLink}`}
+                  class="type-label text-primario hover:text-primario/70 transition"
+                >
+                  {persona.telefono}
+                </a>
+              )}
+              {persona.email && (
+                <a
+                  href={`mailto:${persona.email}`}
+                  class="type-label text-primario hover:text-primario/70 transition break-all"
+                >
+                  {persona.email}
+                </a>
+              )}
+            </div>
+          ))
+        }
+      </div>
     </div>
   </Section>
 </Layout>

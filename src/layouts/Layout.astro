@@ -10,6 +10,7 @@ export interface Props {
 	robots?: string;
 	ogImage?: string;
 	jsonLd?: any;
+	showHeader?: boolean;
 }
 
 const {
@@ -18,7 +19,8 @@ const {
 	canonical = "https://viverotresgarzas.com/",
 	robots = "index,follow",
 	ogImage = "/EMIF9426.webp",
-	jsonLd = null
+	jsonLd = null,
+	showHeader = true
 } = Astro.props as Props;
 
 ---
@@ -64,7 +66,7 @@ const {
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		{/* <UnderConstructionBanner /> */}
-		<Header />
+		{showHeader && <Header />}
 		<slot />
 	</body>
 </html>
