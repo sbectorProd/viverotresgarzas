@@ -9,10 +9,11 @@ const defaultImages = [
 ];
 ---
 
-<div class="relative w-full h-dvh">
+<div class="relative w-full h-[calc(100vh-63px)] md:h-[calc(100vh-84px)]">
     <div
         id="carousel-track"
         class="overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar flex h-full"
+        style="overscroll-behavior-x: contain;"
         tabindex="0"
         aria-label="Carrusel de slides"
     >
@@ -39,6 +40,8 @@ const defaultImages = [
                                     alt={title ?? text.substring(0, 50)}
                                     class="h-full w-full object-cover"
                                 />
+
+                                <div class="absolute inset-0 bg-linear-to-b from-transparent via-primario-dark/10 to-primario-dark md:hidden pointer-events-none" />
                             </div>
                             <div class="relative z-10 flex flex-col justify-end h-full w-full lg:w-1/2 px-8 pb-16 lg:px-16 lg:pb-20 text-primario">
                                 <div class="bg-fondo/80 backdrop-blur-sm rounded-xl px-5 py-4 lg:bg-transparent lg:backdrop-blur-none lg:p-0">
@@ -59,7 +62,10 @@ const defaultImages = [
         </div>
     </div>
 
-    <div id="carousel-dots" class="absolute bottom-6 left-8 lg:left-16 z-20 flex gap-3">
+    <div
+        id="carousel-dots"
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 md:left-8 md:translate-x-0 lg:left-16 z-20 flex gap-3"
+    >
         {
             slides.map((slide, index) => (
                 <button
@@ -93,36 +99,77 @@ const defaultImages = [
     </style>
 
     <script type="module">
-        const track = document.getElementById('carousel-track');
-        const slides = Array.from(track.querySelectorAll('[data-slide-idx]'));
-        const dots = Array.from(document.querySelectorAll('[data-dot-idx]'));
+        const track = document.getElementById("carousel-track");
+        const innerFlex = track.querySelector(":scope > div");
+        const slides = Array.from(track.querySelectorAll("[data-slide-idx]"));
+        const dots = Array.from(document.querySelectorAll("[data-dot-idx]"));
         let activeIdx = 0;
+        let isTeleporting = false;
+
+        // --- Clone trick: inject ghost copies to enable cyclic scrolling ---
+        const lastIdx = slides.length - 1;
+        if (lastIdx >= 1) {
+            const cloneFirst = slides[0].cloneNode(true);
+            const cloneLast = slides[lastIdx].cloneNode(true);
+            cloneFirst.removeAttribute("id");
+            cloneLast.removeAttribute("id");
+            cloneFirst.dataset.clone = "first";
+            cloneLast.dataset.clone = "last";
+            delete cloneFirst.dataset.slideIdx;
+            delete cloneLast.dataset.slideIdx;
+            innerFlex.insertBefore(cloneLast, slides[0]);
+            innerFlex.appendChild(cloneFirst);
+            // Position at first real slide, skipping the prepended clone (all slides are w-dvw)
+            requestAnimationFrame(() => {
+                track.scrollLeft = window.innerWidth;
+            });
+        }
+
+        // All children including clones (used for visibility detection)
+        const allSlideEls = Array.from(innerFlex.children);
 
         function setActiveDot(idx) {
             dots.forEach((dot, i) => {
-                dot.classList.toggle('dot-active', i === idx);
+                dot.classList.toggle("dot-active", i === idx);
             });
         }
 
         function scrollToSlide(idx, smooth = true) {
             const slide = slides[idx];
             if (!slide) return;
-            slide.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', inline: 'center', block: 'nearest' });
+            slide.scrollIntoView({
+                behavior: smooth ? "smooth" : "auto",
+                inline: "center",
+                block: "nearest",
+            });
             activeIdx = idx;
             setActiveDot(idx);
         }
 
-        function getMostVisibleSlideIdx() {
-            let maxVisible = 0, maxIdx = 0;
-            slides.forEach((slide, idx) => {
-                const rect = slide.getBoundingClientRect();
-                const visible = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+        function getMostVisibleEl() {
+            let maxVisible = 0,
+                bestEl = null;
+            allSlideEls.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                const visible = Math.max(
+                    0,
+                    Math.min(rect.right, window.innerWidth) -
+                        Math.max(rect.left, 0),
+                );
                 if (visible > maxVisible) {
                     maxVisible = visible;
-                    maxIdx = idx;
+                    bestEl = el;
                 }
             });
-            return maxIdx;
+            return bestEl;
+        }
+
+        function getMostVisibleSlideIdx() {
+            const el = getMostVisibleEl();
+            if (!el) return activeIdx;
+            if (el.dataset.clone === "last") return lastIdx;
+            if (el.dataset.clone === "first") return 0;
+            return parseInt(el.dataset.slideIdx, 10);
         }
 
         function syncActiveDotWithScroll() {
@@ -133,24 +180,68 @@ const defaultImages = [
             }
         }
 
+        function teleportIfOnClone() {
+            if (isTeleporting) return;
+            const el = getMostVisibleEl();
+            if (!el || !el.dataset.clone) return;
+            const targetIdx = el.dataset.clone === "last" ? lastIdx : 0;
+            const targetSlide = slides[targetIdx];
+            if (!targetSlide) return;
+
+            isTeleporting = true;
+            track.classList.remove("scroll-smooth");
+            targetSlide.scrollIntoView({
+                behavior: "auto",
+                inline: "center",
+                block: "nearest",
+            });
+            // Double rAF: ensure the teleport scroll events have fired before re-enabling smooth
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    track.classList.add("scroll-smooth");
+                    activeIdx = targetIdx;
+                    setActiveDot(targetIdx);
+                    isTeleporting = false;
+                });
+            });
+        }
+
+        let scrollEndTimer = null;
+
         // Dots click
         dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
+            dot.addEventListener("click", () => {
                 scrollToSlide(idx);
             });
         });
 
-        // Scroll/Swipe sync
-        track.addEventListener('scroll', () => {
-            syncActiveDotWithScroll();
-        }, { passive: true });
+        // Scroll/Swipe sync + debounced scrollend fallback
+        track.addEventListener(
+            "scroll",
+            () => {
+                if (!isTeleporting) syncActiveDotWithScroll();
+                clearTimeout(scrollEndTimer);
+                scrollEndTimer = setTimeout(teleportIfOnClone, 150);
+            },
+            { passive: true },
+        );
+
+        // Native scrollend (modern browsers) — cancels the debounce
+        track.addEventListener(
+            "scrollend",
+            () => {
+                clearTimeout(scrollEndTimer);
+                teleportIfOnClone();
+            },
+            { passive: true },
+        );
 
         // Init
         setActiveDot(0);
 
         // Fallback for browsers without smooth scroll
-        if (!('scrollBehavior' in document.documentElement.style)) {
-            scrollToSlide = function(idx) {
+        if (!("scrollBehavior" in document.documentElement.style)) {
+            scrollToSlide = function (idx) {
                 const slide = slides[idx];
                 if (!slide) return;
                 slide.scrollIntoView();
