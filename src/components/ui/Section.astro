@@ -47,10 +47,11 @@ const snapMap: Record<Snap, string> = {
 
 const snapClass = snapMap[snap];
 const clipClass = clip ? "overflow-hidden" : "";
+const tallMobileClass = !fullscreen ? "tall-mobile-natural" : "";
 
 const sectionClasses = fullscreen
   ? `relative h-[calc(100vh-63px)] md:h-[calc(100vh-83px)] w-full flex ${alignMap[align]} ${justifyMap[justify]} ${snapClass} ${clipClass} ${bg} ${text} ${className}`
-  : `relative min-h-dvh w-full flex ${alignMap[align]} ${justifyMap[justify]} py-6 sm:py-8 md:py-12 px-6 md:px-12 pt-20 md:pt-24 ${snapClass} ${clipClass} ${bg} ${text} ${className}`;
+  : `relative min-h-dvh w-full flex ${alignMap[align]} ${justifyMap[justify]} py-6 sm:py-8 md:py-12 px-6 md:px-12 pt-20 md:pt-24 ${snapClass} ${clipClass} ${bg} ${text} ${tallMobileClass} ${className}`;
 ---
 
 <section
@@ -59,3 +60,11 @@ const sectionClasses = fullscreen
 >
   <slot />
 </section>
+
+<style>
+  @media (min-height: 750px) {
+    :global(.tall-mobile-natural) {
+      min-height: 80vh !important;
+    }
+  }
+</style>
